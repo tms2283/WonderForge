@@ -41,7 +41,9 @@ func run_test() -> void:
         expect(scene.quest_catalog.size() >= 8, "Opening campaign quest data loaded")
         scene.queue_free()
         await process_frame
-    expect(GameState._valid_part({"type":"motor","x":1,"y":0,"z":0,"r":0}), "Saved part schema accepts valid motor")
-    expect(not GameState._valid_part({"type":"__shell__","x":1,"y":0,"z":0,"r":0}), "Saved part schema rejects foreign module")
+    var save_state_script: GDScript = load("res://scripts/GameState.gd")
+    var save_state: Node = save_state_script.new()
+    expect(save_state.call("_valid_part", {"type":"motor","x":1,"y":0,"z":0,"r":0}), "Saved part schema accepts valid motor")
+    expect(not save_state.call("_valid_part", {"type":"__shell__","x":1,"y":0,"z":0,"r":0}), "Saved part schema rejects foreign module")
     print("AETHERWORKS RESULT: ", failure_count, " failures")
     quit(1 if failure_count > 0 else 0)
