@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=WonderForge — Invention Station
+GenericName=Creative STEM Learning
+Comment=Offline-first maker world for the family Raspberry Pi
+Exec=/usr/local/bin/wonderforge-launch
+Icon=/opt/wonderforge/web/assets/wonderforge-icon.svg
+Terminal=false
+StartupNotify=true
+Categories=Education;Game;Development;
+Keywords=ForgeVerse;Robot;Science;Engineering;Learn;Projects;

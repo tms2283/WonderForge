@@ -1,0 +1,20 @@
+{
+  "format": "wonderforge-maker-journal",
+  "version": 1,
+  "workspace": "atlas",
+  "exportedAt": "2026-11-23T00:00:00.000Z",
+  "entries": [
+    {
+      "id": "example-triangle-bridge",
+      "title": "Bridge braces: a tabletop model",
+      "questId": "sky-fortress",
+      "question": "Do triangle braces reduce bending in a paper bridge?",
+      "hypothesis": "Adding triangular braces will reduce sag under the same small weight.",
+      "method": "Use paper bridges of equal span and material, change only the braces. Keep the applied weight constant.",
+      "observation": "ILLUSTRATIVE VALUES ONLY: Unbraced model 8 mm sag, braced model 3 mm sag. Actual measurements must be recorded by the learner.",
+      "conclusion": "In this synthetic example the braced paper model sagged less. This is not a construction certification.",
+      "nextStep": "Repeat with two more identical models, note any uncontrolled variation and calculate an average.",
+      "updated": "2026-11-23T00:00:00.000Z"
+    }
+  ]
+}

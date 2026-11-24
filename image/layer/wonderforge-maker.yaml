@@ -1,0 +1,7 @@
+# METABEGIN
+# X-Env-Layer-Name: wonderforge-maker
+# X-Env-Layer-Description: Root-owned WonderForge app; adult-led family setup after OS first use
+# X-Env-Layer-Version: 0.5.0
+# METAEND
+# Rootfs content is provided by the companion customize.overlay directory.
+mmdebstrap: {}

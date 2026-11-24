@@ -1,0 +1,26 @@
+# EXPERIMENTAL IMAGE RECIPE. Validate against the pinned rpi-image-gen revision.
+# Do not distribute or boot as a family daily-driver until adult-user provisioning
+# and display/login have passed first-boot tests on spare removable storage.
+device:
+  layer: rpi4
+  hostname: wonderforge
+image:
+  layer: image-rpios
+  name: wonderforge-pi4-2027
+  boot_part_size: 384M
+  root_part_size: 10G
+layer:
+  base: trixie-minbase
+  maker: wonderforge-maker
+packages:
+  - python3
+  - chromium
+  - labwc
+  - lightdm
+  - rpd-wayland-all
+  - xdg-utils
+  - luanti
+  - luanti-game-minetest
+  - thonny
+  - gimp
+  - inkscape

@@ -1,0 +1,21 @@
+[Unit]
+Description=WonderForge local maker portal (per-user)
+Documentation=file:/opt/wonderforge/README.md
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/wonderforge/server.py --user-port
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+UMask=0077
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,14 @@
+[Unit]
+Description=WonderForge child-account outbound network guard
+After=network-pre.target
+Before=network.target
+
+[Service]
+Type=oneshot
+ExecStartPre=-/usr/sbin/nft delete table inet wonderforge_family
+ExecStart=/usr/sbin/nft -f /etc/wonderforge-family.nft
+ExecStop=-/usr/sbin/nft delete table inet wonderforge_family
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

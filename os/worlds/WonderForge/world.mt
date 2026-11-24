@@ -1,0 +1,5 @@
+gameid = minetest
+mg_name = singlenode
+creative_mode = true
+enable_damage = false
+backend = sqlite3

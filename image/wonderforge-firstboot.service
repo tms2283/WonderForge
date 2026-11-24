@@ -1,0 +1,12 @@
+[Unit]
+Description=WonderForge experimental first-boot application payload staging
+After=local-fs.target
+ConditionPathExists=!/var/lib/wonderforge/staged
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/wonderforge-firstboot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
