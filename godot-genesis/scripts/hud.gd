@@ -146,4 +146,8 @@ func notice(value: String) -> void:
 	toast_label.text = value
 	var tween := create_tween()
 	tween.tween_interval(3.5)
-	tween_callback(func() -> void: if is_instance_valid(toast_label) and toast_label.text == value: toast_label.text = "")
+	tween.tween_callback(_clear_toast.bind(value))
+
+func _clear_toast(value: String) -> void:
+	if is_instance_valid(toast_label) and toast_label.text == value:
+		toast_label.text = ""
