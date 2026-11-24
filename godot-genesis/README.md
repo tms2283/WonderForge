@@ -28,7 +28,7 @@ The project also contains **42 detailed, validated static part specifications an
 - Six-material build mode with perspective ray placement, rotation, part costs, inventory, world-save/load and basic objective integration.
 - Driveable four-wheeled prototype rover using Godot VehicleBody3D, with enter/exit interaction.
 - Four-stage tutorial quest and guild discovery rewards, HUD, compass-like coordinates and session saves.
-- No external model, texture, font, or paid asset dependency. Everything visible is authored as editable engine geometry **and is not the final art**. There is currently no Godot editor/runtime binary in the authoring environment, so this source snapshot has passed static checks but not an engine-level playtest. The GitHub CI workflow is intended to run headless Godot import after publication.
+- No external paid model, font, or texture-pack dependency. The source includes original in-progress glTF workshop and observatory geometry in Explorer and desktop variants. **None of this is the final art.** GitHub Actions has successfully imported and run the Godot 4.7.2 scene and checked the actual rover, garage, construction, course and journal system contracts; a human visual playtest remains essential.
 
 ### What is **not yet done** (read this before promising a finished game)
 
@@ -57,7 +57,7 @@ The project also contains **42 detailed, validated static part specifications an
 
 ### Source and quality verification
 
-The Python static validator checks scene links, script preloads, the 42-part metadata catalog, 24 quest specs and the three quality modes. Four Python contract tests pass, but **no Godot runtime has been launched by this authoring environment**. Every imported scene, vehicle physics interaction and actual platform support must be tested in Godot. See `docs/QA_ACCEPTANCE.md` for manual runtime acceptance and the GitHub Actions workflow in the parent repository for a true engine-parser test.
+The Python static validator checks scene links, script preloads, the 42-part metadata catalog, 24 quest specs, four deterministic model assets and three quality modes. **Five Python contract tests pass.** GitHub Actions runs actual Godot 4.7.2 import, headless scene execution, an independent engine-level system-contract test, desktop exports and a headless smoke check of the exported Linux executable. These are real automated engine checks, **not GUI usability, artistic-quality or Pi-hardware verification**. See `docs/RELEASE-EVIDENCE-v0.3.md` and `docs/QA_ACCEPTANCE.md`.
 
 ### Build philosophy
 
@@ -81,4 +81,4 @@ See [Implementation & test status](docs/IMPLEMENTATION-STATUS-v0.3.md), [Detaile
 
 ### Portable PC builds (experimental CI)
 
-The repository additionally contains Godot export presets and `.github/workflows/genesis-export.yml` to create self-contained Windows x86-64 and Linux x86-64 playable preview builds through the official Godot 4.7.2 export templates. Open GitHub Actions → **WonderForge Genesis — Export Desktop Build** → Run workflow. Download the successful Windows/Linux artifacts after the workflow finishes. These are game prototypes, not certified final releases. Pi ARM64 exports and native benchmarks remain separate.
+The repository contains Godot export presets and `.github/workflows/genesis-export.yml`. A [completed successful export run](https://github.com/tms2283/WonderForge/actions/runs/45330259622) produced standalone **Windows x86-64 and Linux x86-64** preview artifacts with matching official Godot 4.7.2 templates and successfully ran the exported Linux executable headlessly. Open that run, scroll to **Artifacts**, download your operating-system package, extract it and keep the `.pck` beside the executable. Subsequent game-source changes automatically trigger the export workflow. Manual Windows GUI and Pi ARM64 testing remain separate release gates; see `docs/RELEASE-EVIDENCE-v0.3.md`.
