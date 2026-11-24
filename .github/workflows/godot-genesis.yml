@@ -1,0 +1,51 @@
+name: WonderForge Genesis · Godot Game Engine
+on:
+  push:
+    paths:
+      - 'godot-genesis/**'
+      - '.github/workflows/godot-genesis.yml'
+  pull_request:
+    paths:
+      - 'godot-genesis/**'
+      - '.github/workflows/godot-genesis.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static-contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check game source, part definitions, quest specifications, docs
+        run: |
+          cd godot-genesis
+          python3 -m unittest discover -s tests -v
+          python3 tools/validate_project.py
+          bash -n launchers/Linux-Explorer.sh launchers/Linux-Ultra.sh
+  godot-engine-import:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Godot 4.7.2 stable for headless import
+        run: |
+          curl --fail --location --retry 3 --silent --show-error -o /tmp/godot.zip \
+            https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          unzip -q /tmp/godot.zip -d /tmp
+          chmod +x /tmp/Godot_v4.7.2-stable_linux.x86_64
+          /tmp/Godot_v4.7.2-stable_linux.x86_64 --version
+      - name: Parse and import actual Godot scripts and scene
+        run: |
+          set -o pipefail
+          timeout 120 /tmp/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path godot-genesis --editor --quit --verbose 2>&1 | tee /tmp/godot-import.log
+          if grep -E '(SCRIPT ERROR|Parse Error|ERROR: Failed to load|Could not resolve|Error at \()' /tmp/godot-import.log; then
+            echo 'Found engine script/import errors in the log'
+            exit 1
+          fi
+      - name: Capture headless import log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-genesis-headless-import-log
+          path: /tmp/godot-import.log
+          if-no-files-found: ignore
