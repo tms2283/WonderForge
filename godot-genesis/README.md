@@ -48,6 +48,7 @@ The project also contains **42 detailed, validated static part specifications an
 | `scripts/world_builder.gd` | Local construction previsualization |
 | `scripts/vehicle.gd` | Four-wheel driveable testbed |
 | `scripts/hud.gd` | Responsive-ish in-engine HUD and controls |
+| `WONDERFORGE-ULTIMATE-AGENT-SPEC.md` | **Combined 13k+ word agent-ready production and art specification** |
 | `docs/MASTER_GAME_DESIGN.md` | Gameplay, progression, simulation, quests, economy, architecture |
 | `docs/ART_BIBLE.md` | Art direction and scene-by-scene visual specifications |
 | `docs/AGENT_BUILD_PLAYBOOK.md` | Step-by-step agent tasks, files, acceptance gates |
