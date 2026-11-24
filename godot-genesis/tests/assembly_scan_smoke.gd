@@ -33,7 +33,8 @@ func _run() -> void:
 	var builder := BUILDER.new()
 	root.add_child(builder)
 	await process_frame
-	builder.placed = chain.duplicate(true)
+	for record in chain:
+		builder.placed.append(record.duplicate(true))
 	var live: Dictionary = builder.structure_report()
 	_check(bool(live["design_ready"]) and int(live["largest_connected"]) == 3, "runtime builder integrates graph")
 	builder.queue_free()
