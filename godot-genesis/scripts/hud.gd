@@ -171,7 +171,7 @@ func _make_help(root: Control) -> void:
 	col.add_child(_label("EXPLORE  ·  INVENT  ·  BUILD  ·  RACE  ·  LEARN",18,GOLD,true))
 	col.add_child(_label("A new world of living engineering awaits. Wander through the Founders' Valley, visit its five invention guilds, collect materials, construct machines, and test your first rover.",17,PAPER))
 	col.add_child(_label("WASD move · SHIFT sprint · SPACE jump · right mouse to orbit
-B build · 1–6 select · Q rotate · click place · Z undo · X redo
+B build · 1–6 select · Q rotate · click place · I scan · Z undo · X redo
 G vehicle garage · F2 ask ORBIT · choose motor/tires/gearing
 WASD steer/drive · SPACE brake · R reset trial · E disembark
 J see experiment comparison · M mission hints · F5 save · F9 load",15,Color("bcd6d5")))
@@ -186,7 +186,7 @@ func set_resources(amounts: Dictionary) -> void:
 func set_mode(building: bool, kind: String, count: int) -> void:
 	if building:
 		build_label.text = "BUILD MODE    /    %s    /    %d STRUCTURAL PIECES" % [kind.to_upper(),count]
-		footer.text = "1–6 part · Q rotate · click place · Z undo · X redo · B exit"
+		footer.text = "1–6 part · Q rotate · click place · I scan · Z undo · X redo · B exit"
 	else:
 		build_label.text = "EXPLORATION MODE    /    DISCOVER THE VALLEY"
 		footer.text = "WASD move · G garage · F2 ORBIT · J experiments · B build · E interact"
