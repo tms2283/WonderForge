@@ -1,0 +1,36 @@
+; WonderForge: Aetherworks / Godot native vertical slice
+; Open in Godot 4.7.2. Deliberately uses the Compatibility renderer for Pi-class hardware.
+config_version=5
+
+[application]
+config/name="WonderForge: Aetherworks"
+config/description="An original invention-adventure, vehicle builder, engineering sandbox, and learning RPG."
+run/main_scene="res://scenes/menu.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+GameState="*res://scripts/GameState.gd"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+anti_aliasing/quality/msaa_3d=2
+lights_and_shadows/directional_shadow/size=1024
+
+[physics]
+3d/default_gravity=20.0
+common/physics_ticks_per_second=60
+
+[application/run]
+max_fps=60
+
+[debug]
+settings/stdout/print_fps=false

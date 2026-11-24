@@ -1,0 +1,1 @@
+All game logic is native Godot GDScript. See docs for export and asset replacement.

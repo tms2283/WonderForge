@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "world_id": "aether_valley",
+  "name": "The Aether Valley",
+  "area": "204 x 204 meters (procedural blockout), expandable through streamed sector zones",
+  "districts": [
+    {"id": "foundry_square", "title": "Foundry Square", "core": "artisan guilds, festivals, commission boards and workshop apprenticeship", "primary_lesson": "design process, measurement, communication", "production": "a dense 19th-century handbuilt industrial fantasy town with layered stone, painted wood, copper, gearworks, plant life and shafts of warm light"},
+    {"id": "copperleaf_circuit", "title": "Copperleaf Circuit", "core": "racing leagues, engineering garages, timed deliveries and trials", "primary_lesson": "traction, momentum, braking, energy", "production": "scenic elevated hairpin course through orchard country, river viaducts, roaring windmills and modular spectator machinery"},
+    {"id": "mosswood", "title": "Mosswood Forest", "core": "ecology, forestry, environmental stewardship, bridge and dam works", "primary_lesson": "ecosystems, stress, hydrology", "production": "vertical fern forests with old-growth trees, mossy carved stone paths, hidden watermills, huge roots and delicate flying insects"},
+    {"id": "crystal_deep", "title": "Crystal Deep", "core": "cave exploring, surveying, geology, optics, excavation ethics", "primary_lesson": "geology, light, mapping, conservation", "production": "multilevel basalt geodes, prismatic mineral growth, flooded galleries, rope lifts and abandoned research rigs"},
+    {"id": "windward_reach", "title": "Windward Reach", "core": "wind farms, gliders, aviation, energy systems, outdoor survival", "primary_lesson": "turbines, airfoils, power generation", "production": "cloud-washed plateaus with enormous turbines, linen canopies, weather stations, wind-carved cliffs and airborne harbors"},
+    {"id": "clockwork_heights", "title": "Clockwork Heights", "core": "astronomy, precise mechanics, optics, clocks and space exploration", "primary_lesson": "ratios, orbits, observational evidence", "production": "mountain observatory with brass orrery, moving star-chart ceiling, lens towers, telescopes and moonlit observatory courtyards"}
+  ],
+  "note": "The implementation provides terrain and scene-blockout landmarks. The ambitious descriptions are production targets, not existing assets."
+}

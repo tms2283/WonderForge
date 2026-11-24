@@ -1,0 +1,78 @@
+{
+  "schema": "wonderforge.aetherworks.quests.v1",
+  "opening_arc": "The Valley of Unfinished Things",
+  "quests": [
+    {
+      "id": "first_beam", "region": "Foundry Square", "title": "THE FIRST SPARK",
+      "quest_giver": "Master Halden, keeper of the Grand Atelier",
+      "premise": "A walkway to the apprentice workshop has been damaged. The town does not need a hero with a sword; it needs someone who understands how loads are carried.",
+      "objective": "Place six structural modules in the fabricator to begin a testable span.",
+      "why": "Introduce strength, geometry, the difference between a sketch and a functioning structure, and the value of recording failed prototypes.",
+      "condition": "parts_at_least:6", "reward": {"timber": 20, "steel": 10, "reputation": 30},
+      "mentor": "Where does the weight go? If your longest beam bends, what changes when you support its center?"
+    },
+    {
+      "id": "first_rover", "region": "Foundry Square", "title": "FOUR WHEELS AND A QUESTION",
+      "quest_giver": "Tala, track engineer",
+      "premise": "Tala's delivery cart can carry cargo, but its axle geometry makes it wobble at speed. Bring a new design to the raceway.",
+      "objective": "Build four wheels and at least one motor, then enter the rover test mode.",
+      "why": "Mass, traction, the center of mass and controlled experimental variation.",
+      "condition": "rover_ready", "reward": {"wheel": 4, "motor": 1, "copper": 10, "reputation": 45},
+      "mentor": "Try comparing one motor with two while keeping your load identical. Note the real limitations of this teaching vehicle model."
+    },
+    {
+      "id": "race_trial", "region": "Copperleaf Circuit", "title": "THE COPPERLEAF TRIAL",
+      "quest_giver": "Tala, track engineer",
+      "premise": "The valley needs a fast and dependable messenger when storms cut off the mountain trails.",
+      "objective": "Drive the rover through all the ring checkpoints in sequence without leaving the test.",
+      "why": "Explore steering, momentum, braking, and prototype iteration by timing a full circuit.",
+      "condition": "race_finish", "reward": {"steel": 12, "copper": 12, "reputation": 60},
+      "mentor": "A faster machine is not always the best machine. Does it stop predictably at a corner?"
+    },
+    {
+      "id": "crystal_survey", "region": "Crystal Deep", "title": "THE HOLLOW LIGHT",
+      "quest_giver": "The survey guild",
+      "premise": "A vein of luminous crystals has appeared at the old survey site. Record where it is found before anyone starts to mine it.",
+      "objective": "Reach the Crystal Deep beacon and read the geology field notes.",
+      "why": "Observation before extraction; mapping; the difference between hypotheses and measurements.",
+      "condition": "visit:crystal", "reward": {"glass": 16, "copper": 12, "reputation": 35},
+      "mentor": "How could you map the crystal field without damaging the surrounding habitat?"
+    },
+    {
+      "id": "windward_ledger", "region": "Windward Reach", "title": "CATCHING THE WIND",
+      "quest_giver": "Neri, energy keeper",
+      "premise": "The hill settlement has a water wheel, but no reliable way to use the winds that arrive before the winter storms.",
+      "objective": "Reach the windward tower. Investigate why blade pitch and load matter.",
+      "why": "Energy conversion, torque, friction and conservation of energy.",
+      "condition": "visit:wind", "reward": {"steel": 14, "motor": 1, "reputation": 35},
+      "mentor": "If the wind doubles, does the power double? What measurements would tell you?"
+    },
+    {
+      "id": "observatory", "region": "Clockwork Heights", "title": "THE NIGHT MECHANISM",
+      "quest_giver": "Astronomer Vale",
+      "premise": "The astronomical clock has stopped. Its maker left a notebook of star positions and turning ratios.",
+      "objective": "Find the observatory and unlock the first lesson on gear ratios.",
+      "why": "Rotational motion, gearing, patterns, evidence and sky observation.",
+      "condition": "visit:observatory", "reward": {"copper": 18, "hinge": 4, "reputation": 45},
+      "mentor": "How many turns of a small gear does it take to rotate a larger one once?"
+    },
+    {
+      "id": "forest_steward", "region": "Mosswood Forest", "title": "A FOREST WORTH KEEPING",
+      "quest_giver": "Ranger Sable",
+      "premise": "The town needs timber, but the oldest grove also protects its watershed and wildlife.",
+      "objective": "Visit the Mosswood survey marker and think about responsible harvesting.",
+      "why": "Ecosystems, resource management, renewable materials and stewardship.",
+      "condition": "visit:forest", "reward": {"timber": 22, "reputation": 40},
+      "mentor": "Design a small harvesting strategy that replenishes habitat faster than it removes it."
+    },
+    {
+      "id": "community_workshop", "region": "Foundry Square", "title": "A WORKSHOP FOR EVERYONE",
+      "quest_giver": "Inventor's Council",
+      "premise": "People across the valley have brilliant ideas but need a shared workspace where they can build safely.",
+      "objective": "Record three completed quests and build a 16-part prototype to unlock the council's first commission.",
+      "why": "Collaborative engineering, design iteration, resource budgeting and documentation.",
+      "condition": "reputation_and_parts", "reward": {"timber": 25, "steel": 25, "glass": 18, "reputation": 90},
+      "mentor": "Which tools should a community workshop share, and which need specialist supervision?"
+    }
+  ]
+}
