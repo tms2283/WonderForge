@@ -75,6 +75,18 @@ python3 server.py
 
 This option is a full-featured browser demo. The graphical workshop chooser is not authentication, and browser-local progress can be lost when browsing data is cleared. When a separately installed local Ollama model is detected, ORBIT can use it here too; that does not make the demo secure multi-user software. No package installs are attempted.
 
+### Quick visual preview on Windows — no Pi required
+
+1. Download this repository as a ZIP from GitHub (**Code → Download ZIP**) and **Extract All**.
+2. Install Python 3.11 or later on Windows if needed. You do not need Linux, WSL, Ollama, Git, a `.deb`, or administrator privileges.
+3. Open the extracted repository folder and double-click `start-windows.bat`. It starts a localhost-only web server and opens the prototype in your browser.
+4. If the browser does not open automatically, visit **http://127.0.0.1:8765/** yourself. Keep the command window open while exploring; close it or press **Ctrl+C** to stop.
+5. Choose Atlas, Nova, or Team Forge. Explore Mission Control, ForgeVerse, Pocket Builder, Robot Logic Lab, Physics Lab, Maker Journal, ORBIT, and Settings. ORBIT uses scripted guidance if Ollama is not installed.
+
+This is an **interactive visual preview**, not a secure Windows account system. It does not install anything, modify Raspberry Pi OS, or launch Pi-native apps. Browser-stored demonstration data may be lost if browsing storage is cleared.
+
+If Windows blocks the batch file or you prefer the terminal, open PowerShell in the extracted folder and run `py -3 server.py` (or `python server.py`).
+
 **Option D — experimental custom image:** `bash image/build-image.sh` previews the image recipe, and `bash image/build-image.sh --build` attempts the pinned official `rpi-image-gen` workflow on a capable native ARM64 build host. Its base desktop package, adult login, boot, first-boot app-staging flow and GPU compatibility **have not been tested on hardware**, so do not use the resulting image as the family's only boot medium. See [the image build guide](docs/IMAGE-BUILD.md).
 
 ## Why separate Linux users?
