@@ -1,0 +1,10 @@
+.godot/
+*.tmp
+*.log
+.DS_Store
+*.import
+builds/
+dist/
+*.exe
+*.x86_64
+*.arm64

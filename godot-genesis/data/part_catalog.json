@@ -1,0 +1,2236 @@
+{
+  "schema": "wonderforge.genesis.part-catalog.v1",
+  "status": "PRODUCTION_SPEC_ONLY_NOT_RUNTIME_CONNECTED",
+  "units": {
+    "length": "m",
+    "mass": "kg"
+  },
+  "parts": [
+    {
+      "id": "struct.beam.wood",
+      "name": "Timber Beam",
+      "category": "structure",
+      "resource": "timber",
+      "cost_units": 1.5,
+      "mass_kg": 3.6,
+      "dimensions_m": [
+        2.0,
+        0.3,
+        0.4
+      ],
+      "material_id": "wood",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "stud",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "struct.beam.steel",
+      "name": "Steel Beam",
+      "category": "structure",
+      "resource": "alloy",
+      "cost_units": 3,
+      "mass_kg": 15,
+      "dimensions_m": [
+        2.0,
+        0.3,
+        0.4
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "stud",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "struct.panel.wood",
+      "name": "Wooden Deck",
+      "category": "structure",
+      "resource": "timber",
+      "cost_units": 2,
+      "mass_kg": 4,
+      "dimensions_m": [
+        2.0,
+        0.3,
+        0.4
+      ],
+      "material_id": "wood",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "stud",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "struct.foundation",
+      "name": "Stone Footing",
+      "category": "structure",
+      "resource": "stone",
+      "cost_units": 4,
+      "mass_kg": 38,
+      "dimensions_m": [
+        2.0,
+        0.3,
+        0.4
+      ],
+      "material_id": "stone",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "stud",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "struct.strut",
+      "name": "Diagonal Brace",
+      "category": "structure",
+      "resource": "alloy",
+      "cost_units": 2,
+      "mass_kg": 3.8,
+      "dimensions_m": [
+        2.0,
+        0.3,
+        0.4
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "stud",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "struct.chassis",
+      "name": "Open Chassis",
+      "category": "vehicle",
+      "resource": "alloy",
+      "cost_units": 8,
+      "mass_kg": 110,
+      "dimensions_m": [
+        2.0,
+        0.3,
+        0.4
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "stud",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "motion.axle",
+      "name": "Axle",
+      "category": "motion",
+      "resource": "alloy",
+      "cost_units": 2,
+      "mass_kg": 4,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "axle",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "motion.bearing",
+      "name": "Axle Bearing",
+      "category": "motion",
+      "resource": "alloy",
+      "cost_units": 2,
+      "mass_kg": 2,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "axle",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "motion.hinge",
+      "name": "Hinge",
+      "category": "motion",
+      "resource": "alloy",
+      "cost_units": 2,
+      "mass_kg": 2.5,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "hinge",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "hinge",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "hinge",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "motion.slider",
+      "name": "Slider Rail",
+      "category": "motion",
+      "resource": "alloy",
+      "cost_units": 3,
+      "mass_kg": 6,
+      "dimensions_m": [
+        0.4,
+        1,
+        0.4
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "slider",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "slider",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "slider",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "motion.spring",
+      "name": "Coil Spring",
+      "category": "motion",
+      "resource": "alloy",
+      "cost_units": 3,
+      "mass_kg": 3,
+      "dimensions_m": [
+        0.3,
+        1,
+        0.3
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "spring",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "spring",
+          "position_m": [
+            0,
+            0,
+            -0.15
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "spring",
+          "position_m": [
+            0,
+            0,
+            0.15
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "motion.piston",
+      "name": "Hydraulic Piston",
+      "category": "motion",
+      "resource": "alloy",
+      "cost_units": 6,
+      "mass_kg": 12,
+      "dimensions_m": [
+        0.4,
+        1,
+        0.4
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "hydraulic",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "hydraulic",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "hydraulic",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "motion.gear8",
+      "name": "Gear / 8 Teeth",
+      "category": "motion",
+      "resource": "alloy",
+      "cost_units": 2,
+      "mass_kg": 1.4,
+      "dimensions_m": [
+        0.8,
+        0.3,
+        0.8
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "gear",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "gear",
+          "position_m": [
+            0,
+            0,
+            -0.4
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "gear",
+          "position_m": [
+            0,
+            0,
+            0.4
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "motion.gear16",
+      "name": "Gear / 16 Teeth",
+      "category": "motion",
+      "resource": "alloy",
+      "cost_units": 3,
+      "mass_kg": 2.8,
+      "dimensions_m": [
+        0.8,
+        0.3,
+        0.8
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "gear",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "gear",
+          "position_m": [
+            0,
+            0,
+            -0.4
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "gear",
+          "position_m": [
+            0,
+            0,
+            0.4
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "motion.gear32",
+      "name": "Gear / 32 Teeth",
+      "category": "motion",
+      "resource": "alloy",
+      "cost_units": 4,
+      "mass_kg": 5.6,
+      "dimensions_m": [
+        0.8,
+        0.3,
+        0.8
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "gear",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "gear",
+          "position_m": [
+            0,
+            0,
+            -0.4
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "gear",
+          "position_m": [
+            0,
+            0,
+            0.4
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "motion.pulley",
+      "name": "Pulley",
+      "category": "motion",
+      "resource": "alloy",
+      "cost_units": 3,
+      "mass_kg": 3.5,
+      "dimensions_m": [
+        1,
+        0.2,
+        0.3
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "belt",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "belt",
+          "position_m": [
+            0,
+            0,
+            -0.15
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "belt",
+          "position_m": [
+            0,
+            0,
+            0.15
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "motion.belt",
+      "name": "Drive Belt",
+      "category": "motion",
+      "resource": "rubber",
+      "cost_units": 3,
+      "mass_kg": 1.2,
+      "dimensions_m": [
+        1,
+        0.2,
+        0.3
+      ],
+      "material_id": "rubber",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "belt",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "belt",
+          "position_m": [
+            0,
+            0,
+            -0.15
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "belt",
+          "position_m": [
+            0,
+            0,
+            0.15
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "motion.rope",
+      "name": "Cable Rope",
+      "category": "motion",
+      "resource": "cloth",
+      "cost_units": 2,
+      "mass_kg": 1.2,
+      "dimensions_m": [
+        1,
+        0.15,
+        0.15
+      ],
+      "material_id": "cloth",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "rope",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "rope",
+          "position_m": [
+            0,
+            0,
+            -0.075
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "rope",
+          "position_m": [
+            0,
+            0,
+            0.075
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "wheel.small",
+      "name": "Small Wheel",
+      "category": "vehicle",
+      "resource": "rubber",
+      "cost_units": 3,
+      "mass_kg": 11,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "rubber",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "axle",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "wheel.large",
+      "name": "Large Wheel",
+      "category": "vehicle",
+      "resource": "rubber",
+      "cost_units": 4,
+      "mass_kg": 24,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "rubber",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "axle",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "wheel.offroad",
+      "name": "Offroad Tire",
+      "category": "vehicle",
+      "resource": "rubber",
+      "cost_units": 5,
+      "mass_kg": 27,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "rubber",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "axle",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "wheel.caster",
+      "name": "Steering Caster",
+      "category": "vehicle",
+      "resource": "alloy",
+      "cost_units": 4,
+      "mass_kg": 9,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "axle",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "vehicle.steering",
+      "name": "Steering Rack",
+      "category": "vehicle",
+      "resource": "alloy",
+      "cost_units": 6,
+      "mass_kg": 13,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "hinge",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "hinge",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "hinge",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "vehicle.brake",
+      "name": "Mechanical Brake",
+      "category": "vehicle",
+      "resource": "alloy",
+      "cost_units": 3,
+      "mass_kg": 7,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "axle",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "vehicle.seat",
+      "name": "Inventor Seat",
+      "category": "vehicle",
+      "resource": "cloth",
+      "cost_units": 4,
+      "mass_kg": 10,
+      "dimensions_m": [
+        2.0,
+        0.3,
+        0.4
+      ],
+      "material_id": "cloth",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "stud",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "power.motor",
+      "name": "Electric Motor",
+      "category": "power",
+      "resource": "copper",
+      "cost_units": 7,
+      "mass_kg": 21,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "axle",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "power.battery",
+      "name": "Battery Pack",
+      "category": "power",
+      "resource": "copper",
+      "cost_units": 7,
+      "mass_kg": 29,
+      "dimensions_m": [
+        0.5,
+        0.3,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "electric_low",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "power.solar",
+      "name": "Solar Panel",
+      "category": "power",
+      "resource": "glass",
+      "cost_units": 8,
+      "mass_kg": 19,
+      "dimensions_m": [
+        0.5,
+        0.3,
+        0.5
+      ],
+      "material_id": "glass",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "electric_low",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "power.turbine",
+      "name": "Water Turbine",
+      "category": "power",
+      "resource": "alloy",
+      "cost_units": 10,
+      "mass_kg": 42,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "axle",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "power.lamp",
+      "name": "Work Light",
+      "category": "power",
+      "resource": "glass",
+      "cost_units": 2,
+      "mass_kg": 2.2,
+      "dimensions_m": [
+        0.5,
+        0.3,
+        0.5
+      ],
+      "material_id": "glass",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "electric_low",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "control.switch",
+      "name": "Power Switch",
+      "category": "control",
+      "resource": "copper",
+      "cost_units": 1,
+      "mass_kg": 0.5,
+      "dimensions_m": [
+        0.5,
+        0.3,
+        0.5
+      ],
+      "material_id": "copper",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "electric_low",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "control.lever",
+      "name": "Hand Lever",
+      "category": "control",
+      "resource": "alloy",
+      "cost_units": 2,
+      "mass_kg": 1.8,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "hinge",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "hinge",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "hinge",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "control.sensor.speed",
+      "name": "Speed Sensor",
+      "category": "control",
+      "resource": "copper",
+      "cost_units": 2,
+      "mass_kg": 0.25,
+      "dimensions_m": [
+        0.5,
+        0.3,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "electric_low",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "control.sensor.proximity",
+      "name": "Proximity Sensor",
+      "category": "control",
+      "resource": "copper",
+      "cost_units": 2,
+      "mass_kg": 0.4,
+      "dimensions_m": [
+        0.5,
+        0.3,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "electric_low",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "control.timer",
+      "name": "Timer Module",
+      "category": "control",
+      "resource": "copper",
+      "cost_units": 2,
+      "mass_kg": 0.5,
+      "dimensions_m": [
+        0.5,
+        0.3,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "electric_low",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "electric_low",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "vehicle.float",
+      "name": "Buoyancy Pontoon",
+      "category": "vehicle",
+      "resource": "timber",
+      "cost_units": 4,
+      "mass_kg": 18,
+      "dimensions_m": [
+        2.0,
+        0.3,
+        0.4
+      ],
+      "material_id": "wood",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "stud",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "vehicle.propeller",
+      "name": "Propeller",
+      "category": "vehicle",
+      "resource": "alloy",
+      "cost_units": 5,
+      "mass_kg": 5.5,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "axle",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "vehicle.rotor",
+      "name": "Rotor",
+      "category": "vehicle",
+      "resource": "alloy",
+      "cost_units": 8,
+      "mass_kg": 14,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "axle",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "axle",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "struct.window",
+      "name": "Glass Window",
+      "category": "structure",
+      "resource": "glass",
+      "cost_units": 4,
+      "mass_kg": 7,
+      "dimensions_m": [
+        2.0,
+        0.3,
+        0.4
+      ],
+      "material_id": "glass",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "stud",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "struct.tower",
+      "name": "Tower Support",
+      "category": "structure",
+      "resource": "stone",
+      "cost_units": 8,
+      "mass_kg": 70,
+      "dimensions_m": [
+        2.0,
+        0.3,
+        0.4
+      ],
+      "material_id": "stone",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "stud",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "cargo.container",
+      "name": "Cargo Crate",
+      "category": "cargo",
+      "resource": "timber",
+      "cost_units": 5,
+      "mass_kg": 25,
+      "dimensions_m": [
+        2.0,
+        0.3,
+        0.4
+      ],
+      "material_id": "wood",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "stud",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            -0.2
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "stud",
+          "position_m": [
+            0,
+            0,
+            0.2
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    },
+    {
+      "id": "cargo.hitch",
+      "name": "Trailer Hitch",
+      "category": "cargo",
+      "resource": "alloy",
+      "cost_units": 4,
+      "mass_kg": 12,
+      "dimensions_m": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "material_id": "steel",
+      "center_of_mass_local_m": [
+        0,
+        0,
+        0
+      ],
+      "connector_family": "hinge",
+      "sockets": [
+        {
+          "id": "A",
+          "family": "hinge",
+          "position_m": [
+            0,
+            0,
+            -0.25
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "B",
+          "family": "hinge",
+          "position_m": [
+            0,
+            0,
+            0.25
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      ],
+      "visual_status": "ART_NEEDED",
+      "physics_status": "UNVERIFIED_MODEL",
+      "license": "original-design-target"
+    }
+  ]
+}
