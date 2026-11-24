@@ -183,12 +183,12 @@ func _physics_process(delta: float) -> void:
 	last_position = global_position
 	var speed: float = linear_velocity.length()
 	peak_speed_kmh = maxf(peak_speed_kmh,speed*3.6)
-	var throttle := float(Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_UP)) - float(Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_DOWN))*0.55
+	var throttle := Input.get_action_strength("wf_forward") - Input.get_action_strength("wf_backward")*0.55
 	var engine_cap: float = metrics.get("speed_cap_mps",24.0)
 	var gear_factor: float = clampf(1.0-speed/maxf(2.0,engine_cap),0.0,1.0)
 	engine_force = throttle*float(metrics["engine_force"])*gear_factor if battery_remaining>0.1 else 0.0
-	brake = 22.0 if Input.is_key_pressed(KEY_SPACE) else 0.0
-	var turn := float(Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT)) - float(Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT))
+	brake = 22.0 if Input.is_action_pressed("wf_brake") else 0.0
+	var turn := Input.get_action_strength("wf_left") - Input.get_action_strength("wf_right")
 	steering_input = move_toward(steering_input,turn,delta*3)
 	steering = steering_input*float(metrics["turn_limit_rad"])*clampf(1.0-speed/47.0,0.42,1.0)
 	if absf(throttle)>0.05 and battery_remaining>0.0:

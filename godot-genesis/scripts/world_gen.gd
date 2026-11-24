@@ -141,6 +141,17 @@ func _build_landmarks() -> void:
 func _register(name: String, x: float, z: float, kind: String, description: String, reward: String) -> void:
 	landmarks.append({"name": name, "position": Vector3(x, height_at(x, z) + 1.2, z), "kind": kind, "description": description, "reward": reward})
 
+func _collision_box(name_str: String, at: Vector3, extent: Vector3) -> void:
+	var static_body := StaticBody3D.new()
+	static_body.name = name_str
+	static_body.position = at
+	var c := CollisionShape3D.new()
+	var shape := BoxShape3D.new()
+	shape.size = extent
+	c.shape = shape
+	static_body.add_child(c)
+	add_child(static_body)
+
 func _place_original_model(stem: String, at: Vector3) -> bool:
 	# Signed-off original glTF model assets, with independent low/desktop mesh
 	# variants. Godot imports these GLBs as PackedScenes at editor import time.
@@ -172,6 +183,11 @@ func _make_workshop(where: Vector2) -> void:
 		# Editor import unavailable: blockout falls back without crashing.
 		_box(Vector3(x,y+0.28,z),Vector3(14,0.6,11),Color("aab0a2"),"WorkshopFallbackFoundation")
 		_box(Vector3(x,y+3.2,z-4.6),Vector3(12,6,1.4),Color("d4c2a2"),"WorkshopFallbackWall")
+	_collision_box("WorkshopFloorCollider",Vector3(x,y+0.33,z),Vector3(13,0.42,11))
+	_collision_box("WorkshopRearWallCollider",Vector3(x,y+3.0,z-5.1),Vector3(11.8,5.9,0.35))
+	for wall_side in [-1,1]:
+		for wall_z in [-4.6,0,4.6]:
+			_collision_box("WorkshopPillarCollider",Vector3(x+wall_side*6.0,y+3.0,z+wall_z),Vector3(0.75,5.8,0.75))
 	_sign("FOUNDERS' WORKSHOP  /  G: ENGINEER A ROVER",Vector3(x,y+9.8,z+5.5),Color("ebdbb0"))
 	_make_beacon(x - 7.5, z + 7.4, Color("ffcf7b"))
 	_register("The Founders' Workshop", x, z + 7.3, "workshop", "Design your first working bridge. Collect parts, test a prototype, and revise your design.", "Timber x12")
@@ -185,6 +201,10 @@ func _make_observatory(where: Vector2) -> void:
 		ring.outer_radius = 4.9
 		var portal := _object(ring,Vector3(x,y+12,z),Color("efd19a"),"CelestialOrreryFallback")
 		portal.rotation.x = PI*0.52
+	_collision_box("ObservatoryWalkableFloor",Vector3(x,y+0.65,z),Vector3(11.1,0.7,11.1))
+	for i in range(8):
+		var angle := TAU*i/8.0
+		_collision_box("AstralColumnCollider",Vector3(x+cos(angle)*5.45,y+3.2,z+sin(angle)*5.45),Vector3(0.7,5.3,0.7))
 	_sign("ASTRAL OBSERVATORY  /  LOOK UP",Vector3(x,y+15,z),Color("d5c1f3"))
 	_make_beacon(x + 8, z + 4, Color("c0a1ff"))
 	_register("Celestial Observatory", x + 8, z + 4, "astronomy", "Map a star path. Use angles, observation, and logic to guide a skyship.", "Stardust x6")

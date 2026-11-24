@@ -72,3 +72,9 @@ Code produced for this project may be shared under the MIT license in `LICENSE`.
 The new work focuses on a **playable build → hypothesize → drive → measure → compare** loop, instead of more dashboard widgets. Press **G** in the Godot adventure to open a six-component rover engineering garage, tune actual Godot wheel and body properties, write a prediction, and run a six-checkpoint driving trial. The game records actual in-engine trial telemetry to a local journal. Press **J** to compare the two most recent experiments. The terrain builder now creates collision-backed structures and supports **Z undo / X redo**. Four original authored 3D GLBs replace the generic workshop/observatory blockouts, with separate Explorer and desktop mesh variants; they remain WIP assets, not final art.
 
 See [Implementation & test status](docs/IMPLEMENTATION-STATUS-v0.3.md), [Detailed local-agent handoff](docs/LOCAL-AGENT-HANDOFF-v0.3.md), [GLB generator](art_pipeline/generate_original_models.py), and [Godot runtime system test](tests/runtime_smoke.gd). Hardware frame rates, production asset quality and advanced Besiege-grade mechanical simulation are not yet certified.
+
+### Controls added in this development increment
+
+- **F2**: in-engine ORBIT Mentor, scripted offline by default; optional explicitly enabled local-only Ollama mode.
+- **Standard gamepad**: left stick move/drive, right stick orbit, A jump/confirm/place, B brake/build toggle, X interact, Y garage, shoulders change construction part, START guide and BACK trial comparison. Keyboard/mouse equivalents continue to work.
+- **Player model**: a more legible, animated original procedural silhouette is in the scene, but is not release-quality rigged character art.

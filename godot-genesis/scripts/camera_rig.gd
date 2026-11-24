@@ -33,6 +33,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	if target == null or not is_instance_valid(target): return
+	orbit_yaw += (Input.get_action_strength("wf_camera_left")-Input.get_action_strength("wf_camera_right"))*delta*2.4
+	orbit_pitch = clampf(orbit_pitch + (Input.get_action_strength("wf_camera_up")-Input.get_action_strength("wf_camera_down"))*delta*1.5,-1.0,0.16)
 	var pivot: Vector3 = target.global_position + Vector3.UP * (2.5 if target is VehicleBody3D else 1.7)
 	var offset := Vector3(
 		sin(orbit_yaw) * cos(orbit_pitch) * distance,

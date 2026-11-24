@@ -51,3 +51,10 @@ The GitHub workflow `.github/workflows/godot-genesis.yml` executes the same Godo
 ## Production art rule
 
 Professional PC graphics use high-quality authored meshes, PBR materials, decals, weathering, animation, audio and tuned lights with original style and valid asset licenses. Explorer uses generated LOD from the **same source lineage**, not a separate ugly game. Capture Godot screenshots of the actual gameplay and require design review before marking art complete.
+
+## Extended input, avatar and local mentor
+
+- Input actions now cover keyboard and standard gamepads (left stick locomotion/throttle, right stick orbit, face buttons for garage/interact/build). They do not replace the existing keyboard mapping. Controller and keyboard GUI usability still require manual testing.
+- The preview player has a human-readable original model built from rounded mesh forms with basic procedural gait, arms, legs, short hair, goggles, work coat and terracotta half-cape. This is a **procedural animated stand-in**, not the art bible's required finished skinned/rigged character.
+- Press **F2** for ORBIT inside the Godot game. An original scripted technical guide works offline. Optionally tick **USE LOCAL OLLAMA**, which sends a bounded question to **127.0.0.1:11434** and requests `qwen3:0.6b`; failure falls back locally. No shell, files, gameplay actions or model tools are available. This does not ship a model or verify Pi inference performance. The local runtime must be separately installed, and model results are unverified.
+- Spawn-adjacent context prompts and architectural collision proxies make the workshop and observatory more discoverable and tangible. Detailed collision/visual mesh correspondence needs visual and manual review.

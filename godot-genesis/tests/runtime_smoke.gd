@@ -8,6 +8,8 @@ const GARAGE := preload("res://scripts/rover_garage.gd")
 const COURSE := preload("res://scripts/trial_course.gd")
 const JOURNAL := preload("res://scripts/engineering_journal.gd")
 const BUILD := preload("res://scripts/world_builder.gd")
+const INPUTS := preload("res://scripts/input_actions.gd")
+const ORBIT := preload("res://scripts/orbit_mentor.gd")
 var errors: Array[String] = []
 
 func _initialize() -> void:
@@ -19,6 +21,8 @@ func _check(value: bool, message: String) -> void:
 		push_error("WF ENGINE TEST FAIL: " + message)
 
 func _run() -> void:
+	INPUTS.install()
+	_check(InputMap.has_action("wf_forward") and InputMap.has_action("wf_camera_left"),"desktop/controller action maps installed")
 	var original := MODEL.DEFAULT.duplicate(true)
 	var high_torque := original.duplicate(true)
 	high_torque["motor"] = "torque"
@@ -64,6 +68,16 @@ func _run() -> void:
 	garage.close_garage()
 	_check(not garage.visible,"garage closes cleanly")
 
+	var orbit := ORBIT.new()
+	test_root.add_child(orbit)
+	await process_frame
+	_check(orbit.offline_answer("Explain my gears on a hill").contains("gearing"),"offline mentor has substantive mechanical guidance")
+	_check(not orbit.local_model_toggle.button_pressed,"optional network model starts DISABLED")
+	orbit.toggle()
+	_check(orbit.active,"mentor opens as a real UI")
+	orbit.toggle()
+	_check(not orbit.active,"mentor closes without model calls")
+
 	var course := COURSE.new()
 	test_root.add_child(course)
 	await process_frame
@@ -89,7 +103,7 @@ func _run() -> void:
 	test_root.queue_free()
 	await process_frame
 	if errors.is_empty():
-		print("WF ENGINE CONTRACT PASS: blueprint stats, four-wheel physics, builder undo/redo, garage, six gates, journal")
+		print("WF ENGINE CONTRACT PASS: cross-platform controls, blueprint physics, builder undo/redo, garage, offline mentor, six gates, journal")
 		quit(0)
 	else:
 		printerr("WF ENGINE CONTRACT FAIL: ", errors)

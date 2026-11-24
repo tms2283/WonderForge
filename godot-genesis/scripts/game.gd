@@ -15,6 +15,8 @@ const GARAGE_SCRIPT := preload("res://scripts/rover_garage.gd")
 const TRIAL_SCRIPT := preload("res://scripts/trial_course.gd")
 const JOURNAL_SCRIPT := preload("res://scripts/engineering_journal.gd")
 const BLUEPRINT_SCRIPT := preload("res://scripts/rover_blueprint.gd")
+const INPUT_SCRIPT := preload("res://scripts/input_actions.gd")
+const MENTOR_SCRIPT := preload("res://scripts/orbit_mentor.gd")
 
 var player: GenesisPlayer
 var follow: GenesisCamera
@@ -35,9 +37,11 @@ var proving_grounds: GenesisTrialCourse
 var engineering_journal: GenesisEngineeringJournal
 var last_trial: Dictionary = {}
 var last_hypothesis: String = ""
+var mentor: GenesisOrbitMentor
 var trial_notice_s: float = 0.0
 
 func _ready() -> void:
+	INPUT_SCRIPT.install()
 	quality_name = QUALITY_SCRIPT.resolve_requested()
 	quality_settings = QUALITY_SCRIPT.get_settings(quality_name)
 	Engine.max_fps = int(quality_settings["fps_cap"])
@@ -82,6 +86,9 @@ func _ready() -> void:
 	garage.build_applied.connect(_on_garage_applied)
 	garage.trial_requested.connect(_on_garage_trial)
 	garage.garage_closed.connect(_on_garage_closed)
+	mentor = MENTOR_SCRIPT.new()
+	add_child(mentor)
+	mentor.mentor_closed.connect(_on_mentor_closed)
 	_update_hud()
 	hud.notice("QUALITY PROFILE · %s (override with -- --quality=explorer|creator|ultra)" % str(quality_settings["label"]))
 
@@ -110,9 +117,14 @@ func _create_lighting() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if garage != null and garage.active: return
+	if mentor != null and mentor.active:
+		if event is InputEventKey and event.pressed and event.keycode == KEY_F2:
+			mentor.toggle()
+		return
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
 			KEY_F1: hud.toggle_help()
+			KEY_F2: _open_mentor()
 			KEY_F5: _save_game()
 			KEY_F9: _load_game()
 			KEY_M: _show_quest_help()
@@ -146,6 +158,24 @@ func _unhandled_input(event: InputEvent) -> void:
 				if builder.active:
 					builder.select(event.keycode - KEY_1)
 					_update_hud()
+	if event is InputEventJoypadButton and event.pressed:
+		match event.button_index:
+			JOY_BUTTON_Y: _open_garage()
+			JOY_BUTTON_X: _interact()
+			JOY_BUTTON_B:
+				if not rover.driving:
+					builder.set_active(not builder.active)
+					_update_hud()
+			JOY_BUTTON_RIGHT_SHOULDER:
+				if builder.active: builder.choose(1); _update_hud()
+			JOY_BUTTON_LEFT_SHOULDER:
+				if builder.active: builder.choose(-1); _update_hud()
+			JOY_BUTTON_A:
+				if builder.active and not hud.splash.visible and _can_afford(builder.selected) and builder.place():
+					_consume_resource(builder.selected)
+					_update_hud()
+			JOY_BUTTON_START: hud.toggle_help()
+			JOY_BUTTON_BACK: _show_trial_journal()
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and builder.active and not hud.splash.visible:
 		if _can_afford(builder.selected) and builder.place():
 			_consume_resource(builder.selected)
@@ -164,6 +194,20 @@ func _physics_process(_delta: float) -> void:
 		follow.target = player
 	if player != null and hud != null:
 		hud.coords_label.text = "MAP  /  X %d  :  Z %d" % [int(player.position.x), int(player.position.z)]
+		var prompt := ""
+		if not rover.driving and (garage == null or not garage.active):
+			if player.global_position.distance_to(rover.global_position)<7.0:
+				prompt = "E  /  DRIVE FORGEROVER      •      G  /  ENGINEERING GARAGE"
+			else:
+				var nearby_distance := 8.0
+				for landmark in landscape.landmarks:
+					var ds: float = player.global_position.distance_to(landmark.position)
+					if ds < nearby_distance:
+						nearby_distance = ds
+						prompt = "E  /  DISCOVER %s" % landmark.name.to_upper()
+				if prompt.is_empty() and player.global_position.distance_to(Vector3(3,landscape.height_at(3,4),4))<24:
+					prompt = "G  /  OPEN THE INVENTOR'S GARAGE"
+		hud.set_context(prompt)
 
 func _can_afford(part: int) -> bool:
 	var key := _cost_key(part)
@@ -239,6 +283,21 @@ func _advance_story() -> void:
 	_update_hud()
 	if completed == 4:
 		hud.notice("ACT I COMPLETE · The Valley welcomes a new engineer!")
+
+func _open_mentor() -> void:
+	if garage.active: garage.close_garage()
+	if rover.driving:
+		if proving_grounds.active: proving_grounds.stop_trial()
+		rover.driving = false
+		player.global_position = rover.global_position+Vector3(3,2.1,0)
+		player.set_driving(false)
+	player.interaction_enabled = false
+	mentor.set_guidance_context("Public game-only facts: motor %s, tires %s. Most recent completed trial %.1f seconds. No game or private file access." % [rover.blueprint.get("motor","balanced"),rover.blueprint.get("tire","trail"),float(last_trial.get("time_s",0.0))])
+	mentor.toggle()
+
+func _on_mentor_closed() -> void:
+	if not rover.driving and not garage.active:
+		player.interaction_enabled = true
 
 func _open_garage() -> void:
 	if proving_grounds.active:

@@ -16,6 +16,8 @@ var rover_panel: PanelContainer
 var rover_speed: Label
 var rover_course: Label
 var rover_energy: ProgressBar
+var context_hud: PanelContainer
+var context_label: Label
 var collapsed: bool = false
 
 const PAPER := Color("eff7f1")
@@ -122,6 +124,20 @@ func _ready() -> void:
 	footer = _label("WASD move · SHIFT sprint · RMB orbit · B build · E interact · F1 help", 12, PAPER)
 	footer.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	bottom_v.add_child(footer)
+	context_hud = PanelContainer.new()
+	context_hud.name = "WorldInteractionPrompt"
+	context_hud.anchor_left = 0.5
+	context_hud.anchor_right = 0.5
+	context_hud.anchor_top = 1.0
+	context_hud.anchor_bottom = 1.0
+	context_hud.position = Vector2(-237,-167)
+	context_hud.custom_minimum_size = Vector2(474,42)
+	context_hud.add_theme_stylebox_override("panel",_style(Color(0.03,0.115,0.14,0.86),Color("67a99d"),10))
+	root.add_child(context_hud)
+	context_label = _label("",14,MINT,true)
+	context_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	context_hud.add_child(context_label)
+	context_hud.visible = false
 	var sidebar := PanelContainer.new()
 	sidebar.position = Vector2(22,160)
 	sidebar.custom_minimum_size = Vector2(380,0)
@@ -156,7 +172,7 @@ func _make_help(root: Control) -> void:
 	col.add_child(_label("A new world of living engineering awaits. Wander through the Founders' Valley, visit its five invention guilds, collect materials, construct machines, and test your first rover.",17,PAPER))
 	col.add_child(_label("WASD move · SHIFT sprint · SPACE jump · right mouse to orbit
 B build · 1–6 select · Q rotate · click place · Z undo · X redo
-G vehicle garage · choose motor/tires/gearing and run a physics trial
+G vehicle garage · F2 ask ORBIT · choose motor/tires/gearing
 WASD steer/drive · SPACE brake · R reset trial · E disembark
 J see experiment comparison · M mission hints · F5 save · F9 load",15,Color("bcd6d5")))
 	col.add_child(_label("PRESS F1 TO BEGIN EXPLORING",20,MINT,true))
@@ -173,7 +189,12 @@ func set_mode(building: bool, kind: String, count: int) -> void:
 		footer.text = "1–6 part · Q rotate · click place · Z undo · X redo · B exit"
 	else:
 		build_label.text = "EXPLORATION MODE    /    DISCOVER THE VALLEY"
-		footer.text = "WASD move · G garage · J experiments · B build · E interact · F1 help"
+		footer.text = "WASD move · G garage · F2 ORBIT · J experiments · B build · E interact"
+
+func set_context(message: String) -> void:
+	if context_hud == null: return
+	context_label.text = message
+	context_hud.visible = not message.is_empty()
 
 func set_rover_telemetry(data: Dictionary, guidance: String, driving: bool) -> void:
 	if rover_panel == null: return
