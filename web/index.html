@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a1222">
+<meta name="description" content="WonderForge Reforged: a cinematic, offline-first maker environment prototype for one shared Raspberry Pi 4B.">
+<title>WonderForge — Make the Impossible Possible</title>
+<link rel="icon" type="image/svg+xml" href="/web/assets/wonderforge-icon.svg">
+<link rel="stylesheet" href="/web/styles.css">
+</head>
+<body data-theme="starlight">
+<svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<symbol id="i-mark" viewBox="0 0 48 48"><path d="M5 39 19 12l8 14 5-8 11 21H5Z" fill="none" stroke="currentColor" stroke-width="3.3" stroke-linejoin="round"/><path d="m17 24 5 5 5-6M35 29l3 4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9H3v-9Z"/><path d="M9 20v-7h6v7"/></symbol>
+<symbol id="i-world" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c6 7 6 11 0 18M12 3C6 10 6 14 12 21"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5ZM3 7v10l9 5 9-5V7M12 12v10"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.6 8.4-2.4 5-4.8 2.2 2.3-5.1 4.9-2.1Z"/></symbol>
+<symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v7l-6 9c-.8 1.3 0 2.5 1.4 2.5h13.2c1.4 0 2.2-1.2 1.4-2.5l-6-9V3M7 16h10"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.9 7.1L21 11l-7.1 1.9L12 20l-1.9-7.1L3 11l7.1-1.9L12 2ZM18 18l1 3 3 1-3 1-1 3-1-3-3-1 3-1 1-3"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6h7l2 2h9v12H3V6Z"/></symbol>
+<symbol id="i-people" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20v-3a6 6 0 0 1 12 0v3H2ZM15 14a5 5 0 0 1 7 5v1h-5"/></symbol>
+<symbol id="i-books" viewBox="0 0 24 24"><path d="M3 4h7v16H3zM13 4h8v16h-8zM6 7v9M16 8h3"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 21 6v6c0 5-4 8-9 10-5-2-9-5-9-10V6l9-4Z"/><path d="m8 12 3 3 5-6"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M10 2h4l.7 3 2 1 2.6-1.3 2 3.5-2.3 2 .1 2 2.2 2-2 3.5-2.7-1.2-2 1-.6 3h-4l-.7-3-2-1-2.6 1.2-2-3.5 2.3-2v-2l-2.3-2 2-3.5L7 6l2-1 .9-3Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="m7 4 13 8L7 20V4Z"/></symbol>
+<symbol id="i-rotate" viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 1 5M4 4v7h7"/></symbol>
+<symbol id="i-undo" viewBox="0 0 24 24"><path d="m9 5-6 6 6 6M3 11h12a6 6 0 1 1 0 12"/></symbol>
+<symbol id="i-save" viewBox="0 0 24 24"><path d="M4 3h13l4 4v14H3V3h1ZM7 3v7h10V3M7 21v-8h10v8"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 19v3h16v-3"/></symbol>
+<symbol id="i-command" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M7 9h10M7 15h7"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.5 4.5l2.1 2.1M17.4 17.4l2.1 2.1M19.5 4.5l-2.1 2.1M6.6 17.4l-2.1 2.1"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-wand" viewBox="0 0 24 24"><path d="m4 20 14-14 2 2L6 22l-2-2ZM15 3v2M21 13h2M20 2l2 2M10 4l1 2"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+</svg>
+<a class="skip" href="#main">Skip to content</a>
+<div id="welcome" class="welcome-screen" aria-label="Choose a prototype workspace"></div>
+<div id="os" class="os-shell" hidden>
+ <header class="topbar"><button class="mobile-menu icon-button" data-action="toggle-menu" aria-label="Open navigation"><svg><use href="#i-command"/></svg></button><button class="top-brand" data-route="home" aria-label="WonderForge home"><span class="brand-mark"><svg><use href="#i-mark"/></svg></span><span class="wordmark">WONDER<span>FORGE</span><small>THE MAKER UNIVERSE</small></span></button><div class="top-location"><span class="system-pulse"></span><span>YOUR INVENTION STATION</span><span class="slash">/</span><b id="top-location">MISSION CONTROL</b></div><div class="top-actions"><span class="top-device"><span class="tiny-dot"></span> OFFLINE DEMO</span><span class="top-hardware">PI 4B <b>· 4 GB</b></span><button class="top-search" data-action="search" title="Search destinations (Ctrl+K)"><svg><use href="#i-search"/></svg><kbd>Ctrl K</kbd></button><span id="clock" class="clock">--:--</span><button class="avatar-button" data-action="switch-profile" title="Switch workshop" aria-label="Switch workshop"><span id="top-avatar">A</span></button></div></header>
+ <aside class="sidebar" id="sidebar"><div class="nav-group-heading">YOUR STATION <span>01 / 08</span></div><nav aria-label="WonderForge application destinations"><button data-route="home" class="nav-item active"><svg><use href="#i-home"/></svg><span>Mission Control</span><i>01</i></button><button data-route="world" class="nav-item"><svg><use href="#i-world"/></svg><span>ForgeVerse</span><i>02</i></button><button data-route="builder" class="nav-item"><svg><use href="#i-box"/></svg><span>Pocket Builder</span><i>03</i></button><button data-route="logic" class="nav-item"><svg><use href="#i-command"/></svg><span>Robot Logic Lab</span><i>04</i></button><button data-route="labs" class="nav-item"><svg><use href="#i-flask"/></svg><span>Physics Lab</span><i>05</i></button><button data-route="quests" class="nav-item"><svg><use href="#i-compass"/></svg><span>Quest Atlas</span><i>06</i></button><button data-route="journal" class="nav-item"><svg><use href="#i-books"/></svg><span>Maker Journal</span><i>07</i></button><button data-route="pulse" class="nav-item"><svg><use href="#i-settings"/></svg><span>System Pulse</span><i>08</i></button></nav><div class="nav-group-heading">CREATE & DISCOVER</div><nav aria-label="Creation and discovery"><button data-route="studios" class="nav-item"><svg><use href="#i-flask"/></svg><span>Creation Studios</span></button><button data-route="orbit" class="nav-item"><svg><use href="#i-spark"/></svg><span>ORBIT Mentor</span></button><button data-route="vault" class="nav-item"><svg><use href="#i-folder"/></svg><span>Project Vault</span></button><button data-route="fieldguide" class="nav-item"><svg><use href="#i-books"/></svg><span>Offline Field Guide</span></button><button data-route="library" class="nav-item"><svg><use href="#i-books"/></svg><span>Discovery Library</span></button></nav><div class="nav-group-heading">TOGETHER</div><nav aria-label="Shared workshop and family"><button data-route="team" class="nav-item"><svg><use href="#i-people"/></svg><span>Team Forge</span><em>CO-OP</em></button><button data-route="parent" class="nav-item"><svg><use href="#i-shield"/></svg><span>Parent Desk</span></button><button data-route="settings" class="nav-item"><svg><use href="#i-settings"/></svg><span>Settings</span></button></nav><div class="sidebar-bottom"><div class="orbit-mini-icon" aria-hidden="true">✳</div><div><small>CURIOUS ABOUT SOMETHING?</small><b>Ask ORBIT</b></div><button data-route="orbit" class="circle-next" aria-label="Open ORBIT"><svg><use href="#i-arrow"/></svg></button></div><div class="sidebar-meta">BUILD 0.6 · REFORGED <span>2027</span></div></aside>
+ <main id="main" class="main-content" tabindex="-1"><div id="view"></div></main>
+ <div class="bottom-bar"><span><b>✦</b> WONDERFORGE LABORATORY</span><span id="storage-status">APP ON PI OS <i>•</i> PROTOTYPE DATA STORED IN THIS BROWSER</span><span>PRESS <kbd>CTRL</kbd> <kbd>K</kbd> TO JUMP ANYWHERE</span></div>
+</div>
+<div class="shade" id="shade" hidden></div><div class="modal-root" id="modal" hidden></div><div class="command-overlay" id="command-overlay" hidden><div class="command-box"><div class="command-input-wrap"><svg><use href="#i-search"/></svg><input id="command-input" placeholder="Where do you want to go?" autocomplete="off" aria-label="Search destinations"><kbd>ESC</kbd></div><div id="command-results"></div><p>Navigate by keyboard or click. Everything runs locally in this browser.</p></div></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="/web/labs.js" defer></script>
+<script src="/web/journal.js" defer></script>
+<script src="/web/app.js" defer></script>
+</body></html>
