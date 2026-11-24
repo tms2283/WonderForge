@@ -1,0 +1,74 @@
+name: WonderForge Genesis — Export Desktop Build
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'godot-genesis/export_presets.cfg'
+      - '.github/workflows/genesis-export.yml'
+permissions:
+  contents: read
+jobs:
+  export-desktop:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch pinned Godot 4.7.2 editor
+        run: |
+          curl -fL --retry 3 -o /tmp/godot.zip \
+            https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          unzip -q /tmp/godot.zip -d /tmp
+          chmod +x /tmp/Godot_v4.7.2-stable_linux.x86_64
+          /tmp/Godot_v4.7.2-stable_linux.x86_64 --version
+      - name: Install matching official export templates
+        run: |
+          curl -fL --retry 3 -o /tmp/templates.tpz \
+            https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_export_templates.tpz
+          mkdir -p "$HOME/.local/share/godot/export_templates/4.7.2.stable"
+          unzip -q /tmp/templates.tpz -d "$HOME/.local/share/godot/export_templates/4.7.2.stable"
+          export T="$HOME/.local/share/godot/export_templates/4.7.2.stable"
+          if test -d "$T/templates"; then mv "$T/templates/"* "$T/"; rmdir "$T/templates"; fi
+          test -s "$T/windows_release_x86_64.exe"
+          test -s "$T/linux_release.x86_64"
+      - name: Import project then run engine integration contracts
+        run: |
+          /tmp/Godot_v4.7.2-stable_linux.x86_64 --headless --path godot-genesis --editor --quit
+          /tmp/Godot_v4.7.2-stable_linux.x86_64 --headless --path godot-genesis --script res://tests/runtime_smoke.gd
+      - name: Export standalone Windows and Linux x86-64 builds
+        run: |
+          set -euo pipefail
+          mkdir -p godot-genesis/builds
+          /tmp/Godot_v4.7.2-stable_linux.x86_64 --headless --path godot-genesis \
+            --export-release 'Windows Desktop' builds/WonderForgeGenesis.exe
+          /tmp/Godot_v4.7.2-stable_linux.x86_64 --headless --path godot-genesis \
+            --export-release 'Linux Desktop' builds/WonderForgeGenesis.x86_64
+          test -s godot-genesis/builds/WonderForgeGenesis.exe
+          test -s godot-genesis/builds/WonderForgeGenesis.pck
+          test -s godot-genesis/builds/WonderForgeGenesis.x86_64
+          chmod +x godot-genesis/builds/WonderForgeGenesis.x86_64
+          file godot-genesis/builds/*
+      - name: Execute the exported Linux build headlessly
+        run: |
+          timeout 90 godot-genesis/builds/WonderForgeGenesis.x86_64 \
+            --headless --quit-after 30 -- --quality=explorer
+      - name: Bundle portable applications with instructions
+        run: |
+          mkdir -p /tmp/win /tmp/linux
+          cp godot-genesis/builds/WonderForgeGenesis.exe /tmp/win/
+          cp godot-genesis/builds/WonderForgeGenesis.pck /tmp/win/
+          cp godot-genesis/builds/WonderForgeGenesis.x86_64 /tmp/linux/
+          cp godot-genesis/builds/WonderForgeGenesis.pck /tmp/linux/
+          printf 'Run WonderForgeGenesis.exe. The PCK must remain in the same folder.\nPrototype only; no verified Pi build or final artwork.\n' >/tmp/win/README.txt
+          printf 'Run chmod +x WonderForgeGenesis.x86_64 && ./WonderForgeGenesis.x86_64\nThe PCK must remain in the same folder.\nPrototype only.\n' >/tmp/linux/README.txt
+          cd /tmp/win && zip -q -9 -r /tmp/WonderForge-Genesis-Windows-x64.zip .
+          cd /tmp/linux && zip -q -9 -r /tmp/WonderForge-Genesis-Linux-x64.zip .
+          sha256sum /tmp/WonderForge-Genesis-*.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WonderForge-Genesis-Windows-x64
+          path: /tmp/WonderForge-Genesis-Windows-x64.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WonderForge-Genesis-Linux-x64
+          path: /tmp/WonderForge-Genesis-Linux-x64.zip

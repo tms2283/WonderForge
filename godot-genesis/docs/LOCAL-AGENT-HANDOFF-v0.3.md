@@ -46,3 +46,7 @@ Supply source diffs; actual game screenshot or video; current Godot version and 
 ## Ready-to-run agent launch prompt
 
 > Work in `godot-genesis/` on the existing WonderForge repository. Treat `WONDERFORGE-ULTIMATE-AGENT-SPEC.md` as the product contract and `docs/IMPLEMENTATION-STATUS-v0.3.md` as the current verified boundary. Perform Work Package P0 end-to-end, then proceed to P1–P6 only when each acceptance gate is met. Build a playable professional Godot game, not another UI prototype. Preserve stable save schema and quality invariants. Execute real Godot tests for every code change and capture evidence from the running game. Mark any unavailable hardware/art/manual test `NOT RUN` and never conceal failures. Commit working increments with reproducible tests; prioritize the actual user's first fifteen minutes over breadth.
+
+## Desktop export handoff
+
+`export_presets.cfg` includes portable Windows x86-64 and Linux x86-64 configurations. The GitHub workflow `.github/workflows/genesis-export.yml` downloads **official matching Godot 4.7.2 export templates**, imports the project, runs the actual engine contract, exports binary packages and attempts to run the Linux release headlessly before uploading separate application ZIPs. The exported executables are suitable only as prototype builds until a user playtests their graphics, behavior and input on both platforms. The Pi 4B requires a separate ARM64 Compatibility export and hardware validation; desktop export does not prove it.

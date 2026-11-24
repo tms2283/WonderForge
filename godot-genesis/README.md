@@ -78,3 +78,7 @@ See [Implementation & test status](docs/IMPLEMENTATION-STATUS-v0.3.md), [Detaile
 - **F2**: in-engine ORBIT Mentor, scripted offline by default; optional explicitly enabled local-only Ollama mode.
 - **Standard gamepad**: left stick move/drive, right stick orbit, A jump/confirm/place, B brake/build toggle, X interact, Y garage, shoulders change construction part, START guide and BACK trial comparison. Keyboard/mouse equivalents continue to work.
 - **Player model**: a more legible, animated original procedural silhouette is in the scene, but is not release-quality rigged character art.
+
+### Portable PC builds (experimental CI)
+
+The repository additionally contains Godot export presets and `.github/workflows/genesis-export.yml` to create self-contained Windows x86-64 and Linux x86-64 playable preview builds through the official Godot 4.7.2 export templates. Open GitHub Actions → **WonderForge Genesis — Export Desktop Build** → Run workflow. Download the successful Windows/Linux artifacts after the workflow finishes. These are game prototypes, not certified final releases. Pi ARM64 exports and native benchmarks remain separate.
