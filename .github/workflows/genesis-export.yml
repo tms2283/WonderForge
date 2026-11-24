@@ -4,7 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'godot-genesis/export_presets.cfg'
+      - 'godot-genesis/**'
+      - '!godot-genesis/docs/**'
+      - '!godot-genesis/README.md'
+      - '!godot-genesis/WONDERFORGE-ULTIMATE-AGENT-SPEC.md'
+      - '!godot-genesis/AGENTS.md'
       - '.github/workflows/genesis-export.yml'
 permissions:
   contents: read
