@@ -12,7 +12,10 @@ import json
 import sqlite3
 import logging
 import os
-import pwd
+try:
+    import pwd  # POSIX-only; Windows is supported for the unprivileged browser demo.
+except ImportError:
+    pwd = None
 import re
 import secrets
 import shutil
@@ -72,7 +75,10 @@ ROUTES = catalog_routes()
 
 
 def username():
-    return pwd.getpwuid(os.geteuid()).pw_name
+    """Return the OS user, without requiring Unix modules in Windows demo mode."""
+    if pwd is not None and hasattr(os, 'geteuid'):
+        return pwd.getpwuid(os.geteuid()).pw_name
+    return os.environ.get('USERNAME') or os.environ.get('USER') or 'desktop-demo'
 
 
 def team_path():
@@ -222,9 +228,10 @@ class Handler(BaseHTTPRequestHandler):
             return self._reject(401, 'Authenticate through the signed-in Linux session')
         if path == '/api/session':
             user = username()
+            enforced = pwd is not None and hasattr(os, 'geteuid') and user in ('atlas', 'nova')
             return self._reply(200, {'ok': True, 'username': user,
-                                     'profile': user if user in ('atlas', 'nova') else None,
-                                     'linux_identity_enforced': user in ('atlas', 'nova'),
+                                     'profile': user if enforced else None,
+                                     'linux_identity_enforced': enforced,
                                      'team_available': self._shared_enabled(),
                                      'apps_available': True,
                                      'version': '0.7'})
@@ -439,6 +446,8 @@ class Handler(BaseHTTPRequestHandler):
         return self._reply(201, {'ok': True, 'item': {k: data[k] for k in ('id', 'kind', 'title', 'author', 'created')}})
 
     def _launch(self, body):
+        if os.name != 'posix':
+            return self._reject(409, 'Native app launching is available only on Raspberry Pi OS')
         app_id = body.get('id')
         if not isinstance(app_id, str) or app_id not in APPS:
             return self._reject(400, 'Application is not approved')
@@ -478,6 +487,8 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def user_port():
+    if not hasattr(os, 'getuid'):
+        raise RuntimeError('Per-user Linux service mode is not available on this computer')
     return 20000 + os.getuid() % 25000
 
 
@@ -499,4 +510,6 @@ if __name__ == '__main__':
     parser.add_argument('--port', type=int, default=8765)
     parser.add_argument('--user-port', action='store_true', help='Derive a separate localhost port from Linux UID')
     args = parser.parse_args()
+    if args.user_port and os.name != 'posix':
+        parser.error('--user-port requires a Linux/POSIX system; use the default preview mode here')
     run(user_port() if args.user_port else args.port, production=args.user_port)
