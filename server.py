@@ -25,9 +25,10 @@ from pathlib import Path
 from urllib.parse import urlsplit, parse_qs
 from portal_security import PortalAuth, COOKIE_NAME
 import device_health
+import local_ai
 
 ROOT = Path(__file__).resolve().parent
-APP_NAME = 'WonderForge/0.6'
+APP_NAME = 'WonderForge/0.7'
 MAX_POST = 262144
 MAX_TEAM_NOTE = 9000
 ID_PATTERN = re.compile(r'^[a-f0-9]{24}$')
@@ -226,7 +227,7 @@ class Handler(BaseHTTPRequestHandler):
                                      'linux_identity_enforced': user in ('atlas', 'nova'),
                                      'team_available': self._shared_enabled(),
                                      'apps_available': True,
-                                     'version': '0.6'})
+                                     'version': '0.7'})
         if path == '/api/state':
             try:
                 with state_db() as db:
@@ -235,6 +236,8 @@ class Handler(BaseHTTPRequestHandler):
             except (OSError, sqlite3.Error, ValueError) as exc:
                 logging.warning('Unable to read account state: %s', exc)
                 return self._reject(503, 'Private account storage unavailable')
+        if path == '/api/ai/status':
+            return self._reply(200, {'ok': True, 'ai': local_ai.status()})
         if path == '/api/health':
             return self._reply(200, {'ok': True, 'health': device_health.sample()})
         if path == '/api/apps':
@@ -289,7 +292,7 @@ class Handler(BaseHTTPRequestHandler):
         if not self._allowed_host():
             return self._reject(403, 'Invalid localhost host')
         path = urlsplit(self.path).path
-        if path not in ('/api/shared', '/api/launch', '/api/state'):
+        if path not in ('/api/shared', '/api/launch', '/api/state', '/api/ai/chat', '/api/ai/approve'):
             return self._reject(405, 'No write endpoint')
         if not self._authenticated():
             return self._reject(401, 'Authenticate through the signed-in Linux session')
@@ -304,11 +307,67 @@ class Handler(BaseHTTPRequestHandler):
             return self._reject(400, 'Expected an object')
         if path == '/api/state':
             return self._write_state(body)
+        if path == '/api/ai/chat':
+            return self._ai_chat(body)
+        if path == '/api/ai/approve':
+            return self._ai_approve(body)
         if path == '/api/shared':
             return self._create_shared(body)
         if path == '/api/launch':
             return self._launch(body)
         return self._reject(404, 'Not found')
+
+    def _ai_actor(self):
+        # The cookie never goes to the model. Fingerprinting it binds pending
+        # proposals to the exact signed-in browser session, not just a UID.
+        import hashlib
+        return hashlib.sha256(self.headers.get('Cookie', '').encode('utf-8')).hexdigest()
+
+    def _ai_chat(self, body):
+        question = body.get('message', '')
+        if not isinstance(question, str) or not 1 <= len(question.strip()) <= local_ai.MAX_INPUT_CHARS:
+            return self._reject(400, 'Ask a question between 1 and 700 characters')
+        history = body.get('history', [])
+        if not isinstance(history, list) or len(history) > 6:
+            return self._reject(400, 'Chat context must be a short array')
+        try:
+            response = local_ai.answer(question, history)
+        except ValueError:
+            return self._reject(400, 'Invalid AI question')
+        except local_ai.ModelUnavailable as exc:
+            return self._reject(503, str(exc))
+        proposal = response.pop('proposal', None)
+        if proposal:
+            # Proposals are not actions. A separate human click is required
+            # to redeem one time and write anything into their Maker Journal.
+            identity = self._ai_actor()
+            ident = secrets.token_hex(16)
+            now = time.monotonic()
+            with self.server.ai_lock:
+                pending = self.server.ai_pending
+                for k, v in list(pending.items()):
+                    if v['expires'] <= now:
+                        del pending[k]
+                if len(pending) >= 32:
+                    pending.pop(next(iter(pending)))
+                pending[ident] = {'owner': identity, 'expires': now + 180, 'draft': proposal}
+            response['proposal'] = {'token': ident, 'preview': proposal,
+                                    'requires_confirmation': True, 'expires_seconds': 180}
+        return self._reply(200, {'ok': True, **response})
+
+    def _ai_approve(self, body):
+        ident = body.get('token', '')
+        if not isinstance(ident, str) or not re.fullmatch(r'[a-f0-9]{32}', ident):
+            return self._reject(400, 'Invalid action token')
+        with self.server.ai_lock:
+            item = self.server.ai_pending.get(ident)
+            if not item or item['owner'] != self._ai_actor() or item['expires'] <= time.monotonic():
+                return self._reject(403, 'Proposal expired, already used, or belongs to another session')
+            del self.server.ai_pending[ident]
+        # This is the approved *data*, not an implicit file write. The existing
+        # Maker Journal validator and private persistence path must save it.
+        return self._reply(200, {'ok': True, 'approved_draft': item['draft'],
+                                 'note': 'Use the ordinary journal save path; no model output executed'})
 
     def _write_state(self, body):
         key = body.get('key')
@@ -429,7 +488,9 @@ def run(port=8765, host='127.0.0.1', production=False):
         httpd.daemon_threads = True
         if production:
             httpd.auth = PortalAuth()
-        print(f'WonderForge v0.6 available at http://127.0.0.1:{httpd.server_port}/', flush=True)
+        httpd.ai_lock = threading.Lock()
+        httpd.ai_pending = {}
+        print(f'WonderForge v0.7 available at http://127.0.0.1:{httpd.server_port}/', flush=True)
         httpd.serve_forever()
 
 

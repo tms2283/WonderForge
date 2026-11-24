@@ -1,3 +1,13 @@
+# v0.7 — local AI integration release candidate (23 Nov 2026)
+
+- Optional Qwen3 0.6B Ollama backend, fixed localhost connection, cloud-model-denying allowlist, bounded context/threads/turns. No model weights included.
+- A model-selectable yet server-validated **read-only** toolkit (Field Guide search, quest search, LED and beam educational estimates); maximum two calls.
+- Session-bound, single-use human approval for Maker Journal drafts; no unapproved changes or fabricated observations/conclusions.
+- Accurate offline fallback, status labels, source attribution and transparent tool-use disclosures in ORBIT.
+- Dry-run-first adult Ollama setup, local-only service drop-in, reversible configuration, and Pi model benchmark.
+- New security and browser acceptance tests; revised Debian packaging and CI.
+- Still requires physical Pi model/thermal/memory/gameplay/privacy acceptance tests before hardware-final label.
+
 # v0.5.0 — 2026-11-23
 
 - Authenticated per-account localhost API using a one-use signed HMAC ticket, HttpOnly cookie and private Linux 0600 signing key.

@@ -21,7 +21,7 @@ jobs:
         run: python3 -m unittest discover -s tests -v
       - name: Syntax and shell safety
         run: |
-          python3 -m compileall -q server.py portal_security.py device_health.py tools scripts
+          python3 -m compileall -q server.py portal_security.py device_health.py local_ai.py tools scripts
           node --check web/app.js
           node --check web/labs.js
           node --check web/journal.js
@@ -29,7 +29,7 @@ jobs:
       - name: Verify source archive has no credentials or private state
         run: |
           test ! -e .env
-          test ! -e dist/wonderforge-os_0.6.0_all.deb
+          test ! -e dist/wonderforge-os_0.7.0_all.deb
           ! git ls-files | grep -E '(^|/)(portal\.key|.*\.sqlite3|.*\.pyc|\.env)$'
   package:
     needs: source-and-security
@@ -41,10 +41,10 @@ jobs:
       - name: Build reproducible Debian application payload
         run: |
           bash scripts/build-deb.sh /tmp/wonderforge-artifacts
-          dpkg-deb --contents /tmp/wonderforge-artifacts/wonderforge-os_0.6.0_all.deb
-          dpkg-deb --info /tmp/wonderforge-artifacts/wonderforge-os_0.6.0_all.deb
+          dpkg-deb --contents /tmp/wonderforge-artifacts/wonderforge-os_0.7.0_all.deb
+          dpkg-deb --info /tmp/wonderforge-artifacts/wonderforge-os_0.7.0_all.deb
       - uses: actions/upload-artifact@v4
         with:
-          name: wonderforge-os-0.6-deb
-          path: /tmp/wonderforge-artifacts/wonderforge-os_0.6.0_all.deb
+          name: wonderforge-os-0.7-deb
+          path: /tmp/wonderforge-artifacts/wonderforge-os_0.7.0_all.deb
           if-no-files-found: error

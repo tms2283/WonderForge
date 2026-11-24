@@ -15,7 +15,7 @@ mkdir -p "$STAGE/DEBIAN" "$STAGE/opt/wonderforge" "$STAGE/usr/local/bin" \
     "$STAGE/usr/share/applications" "$STAGE/usr/lib/systemd/user"
 cat > "$STAGE/DEBIAN/control" <<'CONTROL'
 Package: wonderforge-os
-Version: 0.6.0
+Version: 0.7.0
 Section: education
 Priority: optional
 Architecture: all
@@ -29,7 +29,7 @@ Description: Offline-first family maker desktop for Raspberry Pi 4B
  settings or privileged services are created at install time.
 CONTROL
 for item in web data design docs os installer scripts tools;do cp -a "$ROOT/$item" "$STAGE/opt/wonderforge/";done
-for item in server.py portal_security.py device_health.py README.md CHANGELOG.md LICENSE;do cp -a "$ROOT/$item" "$STAGE/opt/wonderforge/";done
+for item in server.py portal_security.py device_health.py local_ai.py README.md CHANGELOG.md LICENSE;do cp -a "$ROOT/$item" "$STAGE/opt/wonderforge/";done
 # Remove host Python cache artifacts: these are machine/version dependent and
 # must not appear in a reproducible cross-architecture source-only package.
 find "$STAGE/opt/wonderforge" -type d -name '__pycache__' -prune -exec rm -rf '{}' +
@@ -39,6 +39,6 @@ install -m 0644 "$ROOT/os/desktop/wonderforge.desktop" "$STAGE/usr/share/applica
 install -m 0644 "$ROOT/os/systemd/wonderforge.service" "$STAGE/usr/lib/systemd/user/wonderforge.service"
 find "$STAGE/opt/wonderforge" -type d -exec chmod 0755 '{}' +
 find "$STAGE/opt/wonderforge" -type f -exec chmod 0644 '{}' +
-dpkg-deb --build --root-owner-group "$STAGE" "$OUT/wonderforge-os_0.6.0_all.deb"
-dpkg-deb --info "$OUT/wonderforge-os_0.6.0_all.deb"
-echo "Built: $OUT/wonderforge-os_0.6.0_all.deb"
+dpkg-deb --build --root-owner-group "$STAGE" "$OUT/wonderforge-os_0.7.0_all.deb"
+dpkg-deb --info "$OUT/wonderforge-os_0.7.0_all.deb"
+echo "Built: $OUT/wonderforge-os_0.7.0_all.deb"

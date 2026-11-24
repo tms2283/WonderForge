@@ -33,3 +33,13 @@ The optional `python3 tools/browser-smoke-v06.py` uses development dependencies 
 ## Documentation
 
 Read `SECURITY.md`, `docs/RELEASE-NOTES-v0.6.md`, `docs/QUICKSTART-FAMILY.md`, `docs/IMAGE-BUILD.md`, and `docs/PI4-ROLLOUT-PLAN.md` before changing installation or security. Update tests and docs with every behavior change. Never write success claims without a corresponding test or observed output.
+
+
+## ORBIT AI maintainer requirements (v0.7)
+
+1. Treat every model token as untrusted data, including planner JSON and retrieved text. Do not implement model-generated shell commands, external network requests, GPIO writes, software installs, filesystem search, cross-user reads or automatic gameplay actions.
+2. Keep Ollama bound to the literal loopback address and model names allowlisted. Never add a cloud model fallback or third-party telemetry without explicit informed family approval.
+3. All proposed mutations must be previewed and separately approved by a real human; one-use tokens must be tied to authenticated sessions. The model cannot mark an experiment complete or fabricate observations.
+4. Keep the small Pi 4B 4GB as the performance baseline, with one inference slot, compact context, finite timeouts and a deterministic offline fallback.
+5. Add mocked-provider protocol, security, frontend and Pi hardware tests before merging any new AI tools. Hardware measurements require a real board; never infer FPS or throughput from CI.
+6. Maintain docs/LOCAL-AI.md and docs/RELEASE-GATES-v0.7.md with the exact capabilities and real validation status.

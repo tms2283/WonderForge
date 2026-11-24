@@ -22,3 +22,7 @@ No account credentials, external analytics, profiling, ad SDKs, or automatic rem
 ## Safe testing
 
 Automated tests use temporary directories, port-zero localhost servers, and mocked Unix identities. Installers are dry-run-only unless supplied explicit `--apply`, which refuses a non-Raspberry Pi 4 Model B target. Physical installation requires a spare storage device and adult approval.
+
+## Optional ORBIT generative AI
+
+The optional model is a separate Ollama service running with `OLLAMA_HOST=127.0.0.1:11434` and `OLLAMA_NO_CLOUD=1`, configured only after adult approval. WonderForge never sends children's prompts to an external service or opens a model-provided URL. Model-selected tools are read-only and strictly allowlisted; draft approval is human-gated. Local generative models can still produce inaccurate or inappropriate text, and the model service is not a substitute for adult supervision or OS security. See `docs/LOCAL-AI.md` for setup, limitations and rollback.

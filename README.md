@@ -1,7 +1,15 @@
-# WonderForge OS 2027 · Engineering Edition 0.6
+# WonderForge OS 2027 · Engineering Edition 0.7
 
 **An installable, offline-first invention station for one shared Raspberry Pi 4 Model B (4 GB RAM).** Built for two home-educated brothers, age 11 and 13, with individual Linux logins and a consciously shared project space. This edition moves beyond a browser-only demonstration to include an actual per-user portal service, filesystem permissions, an app-launch backend, account provisioning, a native Debian package, an original playable-content Luanti worldmod, and optional UID-based offline enforcement.
 
+
+## v0.7: ORBIT runs an optional LOCAL language model (23 November 2026)
+
+**Generative inference is now implemented as an optional feature**, integrated with the existing safe launcher and per-user portal. An adult must separately install Ollama for Linux ARM64, configure its localhost-only service, and download a suitable small model. No model weights or third-party AI services are included in the `.deb`. The default, Qwen3 `0.6b`, is an experiment for the existing Pi 4B **4 GB RAM** and still needs measured real-device verification.
+
+ORBIT has a bounded local model planner: at most two turns, two **read-only** app-defined tools, one active model generation, 2048 context tokens, two CPU threads and no shell/network/filesystem/program-launch tools. It can search approved original lessons/quests or calculate idealized physics examples. It can suggest a Maker Journal experiment, but the user must explicitly approve a single-use session-bound proposal; observations and conclusions remain blank until the human performs a test. It transparently falls back to the scripted mentor when local inference is unavailable. The model is fallible and **not** a child-safety filter.
+
+See [adult setup and rollback guide](docs/LOCAL-AI.md), [v0.7 release acceptance gates](docs/RELEASE-GATES-v0.7.md), and [ORBIT source](local_ai.py). The image builder remains optional, since supported Raspberry Pi OS is already installed.
 
 ## v0.6: inquiry, evidence, and observable hardware (23 November 2026)
 
@@ -31,7 +39,7 @@ See [v0.6 release notes](docs/RELEASE-NOTES-v0.6.md) and [v0.5 release notes](do
 
 **Packaged and configured but not physically verified:** Raspberry Pi account provisioning, optional installed applications, group-owned shared directory, optional outbound network blocking with nftables, XDG desktop integration, the Luanti in-world island generator and quests, and ARM64 first-boot image-builder hooks. These depend on a real Raspberry Pi 4B with Raspberry Pi OS Trixie 64-bit. Source inspection and browser simulation are **not** proof of successful Pi boot, compatible graphics/audio, or real gameplay.
 
-**Not delivered:** a physically boot-tested and flashable custom `.img`, a fully featured offline local generative AI model, a comprehensive child-safe content filtering product, a visually photorealistic 3D MMORPG, predownloaded third-party game worlds, or measured Pi-4 frame rates. Those are distinct engineering and hardware verification problems, not checkboxes to mark as done.
+**Not delivered:** a physically boot-tested and flashable custom `.img`, a pretrained local model weight bundle or hardware-validated generative inference, a comprehensive child-safe content filtering product, a visually photorealistic 3D MMORPG, predownloaded third-party game worlds, or measured Pi-4 frame rates. Those are distinct engineering and hardware verification problems, not checkboxes to mark as done.
 
 ## Choose a deployment method
 
@@ -50,7 +58,7 @@ Then disable automatic desktop login in `sudo raspi-config` so the brothers sele
 **Option B — Debian package, to install the app payload without creating accounts automatically:**
 
 ```bash
-sudo apt install ./wonderforge-os_0.6.0_all.deb
+sudo apt install ./wonderforge-os_0.7.0_all.deb
 sudo bash /opt/wonderforge/installer/system-install.sh --apply --admin-user=YOUR_EXISTING_ADMIN
 sudo passwd atlas
 sudo passwd nova
@@ -65,7 +73,7 @@ python3 server.py
 # Visit http://127.0.0.1:8765/ on the same machine
 ```
 
-This option is a full-featured browser demo. The graphical workshop chooser is not authentication, and browser-local progress can be lost when browsing data is cleared. No package installs are attempted.
+This option is a full-featured browser demo. The graphical workshop chooser is not authentication, and browser-local progress can be lost when browsing data is cleared. When a separately installed local Ollama model is detected, ORBIT can use it here too; that does not make the demo secure multi-user software. No package installs are attempted.
 
 **Option D — experimental custom image:** `bash image/build-image.sh` previews the image recipe, and `bash image/build-image.sh --build` attempts the pinned official `rpi-image-gen` workflow on a capable native ARM64 build host. Its base desktop package, adult login, boot, first-boot app-staging flow and GPU compatibility **have not been tested on hardware**, so do not use the resulting image as the family's only boot medium. See [the image build guide](docs/IMAGE-BUILD.md).
 
@@ -113,6 +121,7 @@ Raspberry Pi OS Trixie 64-bit  ·  normal graphical login
  ├─ WonderForge web UI: 15 experiences, scripts, quests, editors, ORBIT
  ├─ Approved desktop applications: actual APT packages, launched by allowlist
  ├─ Luanti worldmods: 6 islands, game quests, custom textures, singleplayer
+ ├─ Optional ORBIT: small local Ollama model + read-only tools + human approved journal drafts
  └─ Optional nftables: per-child-UID non-loopback output blocking
 ```
 
@@ -132,6 +141,9 @@ The Pi audit deliberately reports failure here for the missing Pi hardware/accou
 
 ## Project files
 
+- `local_ai.py` — fixed-loopback Ollama gateway and bounded read-only agent planner
+- `installer/setup-local-ai.sh` — dry-run-first adult configuration for offline model inference
+- `tools/benchmark-local-ai.py` — on-device model latency and hardware observations
 - `device_health.py` — honest read-only Pi resource sampling
 - `web/journal.js` — validated experiment evidence records and import/export
 - `server.py` — localhost server, bounded team sharing and approved program launch

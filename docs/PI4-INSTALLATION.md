@@ -51,7 +51,7 @@ bash installer/offline-guard.sh
 
 The dry run should print the exact system paths and user accounts. It should **not** create accounts, install programs, alter networking or start a service. Verify the source directory is readable and not a symlink to an untrusted location.
 
-If you prefer the Debian package, install it with `sudo apt install ./wonderforge-os_0.6.0_all.deb` from a directory containing the package. This provides an ordinary program payload, not user accounts. The `.deb` and source-tree methods are alternatives; using both is unnecessary.
+If you prefer the Debian package, install it with `sudo apt install ./wonderforge-os_0.7.0_all.deb` from a directory containing the package. This provides an ordinary program payload, not user accounts. The `.deb` and source-tree methods are alternatives; using both is unnecessary.
 
 ## Stage 3 · Provision actual accounts
 
@@ -147,3 +147,8 @@ python3 -m unittest discover -s tests -v
 Manually verify: display/login, root/admin separation, app launch, Luanti world generation and movement, saving/editing/exporting projects, Atlas→Nova shared notebook, Pi memory use, no crashes, reboot persistence, secure child home directories, no silent cloud contacts, adult login and update access, and working restoration from backup.
 
 If a child account cannot log in, return to the **adult** account and verify its password is set and its account is not disabled. If WonderForge fails, Linux desktop and standard applications should remain accessible. Never hide the standard login/terminal recovery route. For uninstalling the program, use `installer/uninstall.sh` only with the source-tree install, or `sudo apt remove wonderforge-os` for Debian package deployments. Both preserve the children's homes and world saves. A factory reset is not an acceptable troubleshooting shortcut.
+
+
+### Optional local AI path (v0.7)
+
+The custom image builder is not required. On existing Raspberry Pi OS, an adult may install Ollama ARM64 and configure the local-only service using [`LOCAL-AI.md`](LOCAL-AI.md). First use the dry-run of `installer/setup-local-ai.sh`; `--apply` enforces local-only/cloud-disabled settings and downloads one allowlisted model. Do not expect multi-billion-parameter model throughput from a 4 GB Pi 4B. System Pulse and the on-device AI benchmark provide observations instead of invented performance data.

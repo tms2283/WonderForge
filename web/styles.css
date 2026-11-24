@@ -101,3 +101,10 @@ button,input,textarea,select{font:inherit}button{cursor:pointer;color:inherit}bu
 .pulse-guide p{color:var(--muted);line-height:1.7;max-width:80ch}
 @media(max-width:1000px){.journal-layout{grid-template-columns:1fr}.pulse-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.journal-summary{grid-template-columns:1fr}.journal-summary>div{padding:13px}.journal-editor{padding:17px}.pulse-stats{grid-template-columns:1fr}.pulse-report,.pulse-guide{padding:16px}}
+
+/* ORBIT v0.7: visible human approval for a local model's proposed action. */
+.orbit-approval{border:1px solid rgba(123,237,210,.42);border-radius:12px;background:rgba(24,76,80,.25);padding:18px;margin:12px 20px;display:grid;gap:10px}
+.orbit-approval h3{font-size:19px;margin:0;color:var(--fg,#edf8f9)}
+.orbit-approval p,.orbit-approval small{margin:0;line-height:1.55;color:var(--muted,#bad0d4)}
+.orbit-approval-actions{display:flex;flex-wrap:wrap;gap:10px}
+.orbit-disclosure{font-size:11px;color:var(--muted,#bad0d4);line-height:1.6;margin-top:auto}

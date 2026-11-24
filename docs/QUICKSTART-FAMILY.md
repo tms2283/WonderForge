@@ -6,12 +6,12 @@
 
 1. **Back up the existing Pi.** Do not overwrite the only working SD card or SSD. Use a spare storage device, preferably at least 64 GB, with enough free space for art tools and game worlds.
 2. Create the **adult administrator account** using Raspberry Pi Imager / the official OS first-run process. Verify the normal graphical desktop, network, keyboard, audio and OS updates. Keep that adult account separate from the two children.
-3. From a terminal in the adult account, copy `wonderforge-os_0.6.0_all.deb` onto the Pi. This file only contains the WonderForge app payload; third-party apps are not included.
+3. From a terminal in the adult account, copy `wonderforge-os_0.7.0_all.deb` onto the Pi. This file only contains the WonderForge app payload; third-party apps are not included.
 
 ## Install without immediately changing accounts or network
 
 ```bash
-sudo apt install ./wonderforge-os_0.6.0_all.deb
+sudo apt install ./wonderforge-os_0.7.0_all.deb
 sudo bash /opt/wonderforge/installer/system-install.sh
 ```
 
@@ -85,3 +85,17 @@ From the sidebar, open **Physics Lab** for two idealized models: an LED/resistor
 **Project persistence:** The authenticated production portal saves projects, lab settings, quest completion, and logic programs to each child's private SQLite file. Use the Project Vault export regularly anyway. Never confuse the ordinary uncredentialed developer server (`python3 server.py`) with the signed-in Linux desktop launcher (`wonderforge-launch`).
 
 **Backups:** Run the dry-run-first `scripts/backup-family.sh --dest=/mounted/ENCRYPTED_BACKUP` as an adult. It writes a standard **unencrypted** tar.gz and a `.sha256` receipt, and audits archive paths before marking it complete. The destination disk should itself be encrypted and restricted. Run `python3 tools/inspect-backup.py /path/to/archive.tar.gz --sha256 EXPECTED_HASH` to verify without extracting. Restoration is intentionally not automated because blindly overwriting the only children's homes could destroy newer projects.
+
+
+## Optional fully local ORBIT AI (adult setup)
+
+WonderForge works without a model. The v0.7 portal also supports a small, separately installed local Ollama model. **Do not automatically install a model on the child's account.** For the Pi 4B 4GB, begin with `qwen3:0.6b`, not a multi-billion-parameter desktop model.
+
+1. As the adult, read [`LOCAL-AI.md`](LOCAL-AI.md) thoroughly.
+2. Install the official Ollama ARM64 program with adult supervision; download/review the official installer before executing.
+3. Preview `sudo bash /opt/wonderforge/installer/setup-local-ai.sh` (no changes).
+4. After reviewing the changes, explicitly run `sudo bash /opt/wonderforge/installer/setup-local-ai.sh --apply` while the adult has Internet access for the one-model download. The script enforces localhost binding and disables Ollama cloud features.
+5. Log into `atlas` or `nova`, open ORBIT, and click **CHECK LOCAL MODEL**. The scripted offline mentor remains available if the service is missing or slow.
+6. On the Pi, run `python3 /opt/wonderforge/tools/benchmark-local-ai.py` and record actual observed latency/temperature before deciding whether to keep inference enabled.
+
+No model weight is bundled with the `.deb`. A local model is fallible and is not an adequate content filter or a substitute for adult supervision. The model cannot execute operating-system commands or directly control hardware via WonderForge.

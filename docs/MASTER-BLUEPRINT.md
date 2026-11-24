@@ -1,3 +1,5 @@
+> **Historical visual blueprint:** This document describes the earlier scripted-demo design. As of v0.7, the optional local Ollama model integration with bounded read-only tools is implemented. See [LOCAL-AI.md](LOCAL-AI.md) for actual capabilities and acceptance gates.
+
 # WonderForge Reforged 2027 — Complete Design and Engineering Blueprint
 
 **Prototype build 0.3 · November 22, 2026**

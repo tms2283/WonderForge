@@ -58,6 +58,11 @@ def check():
         add(app, bool(shutil.which(app)),shutil.which(app) or 'not installed')
     add('WonderForge launcher',Path('/usr/local/bin/wonderforge-launch').exists(), '/usr/local/bin/wonderforge-launch')
     add('WonderForge service',Path('/usr/lib/systemd/user/wonderforge.service').exists(),'/usr/lib/systemd/user/wonderforge.service')
+    ai=Path('/etc/systemd/system/ollama.service.d/10-wonderforge-local-only.conf')
+    text=ai.read_text(errors='replace') if ai.is_file() else ''
+    add('Optional Ollama program', bool(shutil.which('ollama')), shutil.which('ollama') or 'not installed; scripted ORBIT works')
+    add('AI local-only service policy', 'OLLAMA_HOST=127.0.0.1:11434' in text and 'OLLAMA_NO_CLOUD=1' in text,
+        'Adult-only override: '+str(ai) if ai.is_file() else 'not configured; model fallback remains available')
     add('Network guard configured',Path('/etc/wonderforge-family.nft').exists(),
         'Optional account-level outbound blocking; not a full content filter')
     return reports
