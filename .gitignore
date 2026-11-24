@@ -18,3 +18,6 @@ __pycache__/
 !.env.example
 /node_modules/
 /.venv/
+
+# Local agent diagnostic reports (potentially private machine data)
+.agent-reports/

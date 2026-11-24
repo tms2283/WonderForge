@@ -1,5 +1,7 @@
 # WonderForge: Genesis — Cross-platform 3D engineering adventure
 
+**Local coding agent handoff (2026-11-24):** [Execution checklist](docs/AGENT-HANDOFF-2026-11-24.md) · [Non-destructive preflight](tools/agent_preflight.py) · [Current Godot Genesis](godot-genesis/) · [Save recovery](godot-genesis/docs/SAVE-RECOVERY-v0.4.md) · [Assembly inspector](godot-genesis/docs/ASSEMBLY-SCAN-v0.4.md).
+
 **Current active direction:** A real Godot 4.7.2 game, not a browser dashboard. The Raspberry Pi 4B (4 GB) is the *minimum* target; Windows/Linux gaming PCs use higher-quality assets and graphics tiers. The premium visual/physics/RPG production is **in progress**, not shipped.
 
 **[▶ Get the Windows/Linux playable alpha (GitHub Actions artifacts)](https://github.com/tms2283/WonderForge/actions/runs/45330259622)** — select `WonderForge-Genesis-Windows-x64` or `WonderForge-Genesis-Linux-x64` under **Artifacts**, download, extract, keep executable and accompanying `.pck` together, and launch. GitHub login may be needed to download artifacts. The Linux export passed a 30-frame headless executable smoke test; Windows graphical playtesting remains a manual acceptance gate.
