@@ -33,7 +33,7 @@ jobs:
           /tmp/godot/Godot_v4.7.2-stable_linux.x86_64 --headless --path godot/game --editor --import --quit
       - name: Instantiate native world, building editor and quest campaign
         run: |
-          /tmp/godot/Godot_v4.7.2-stable_linux.x86_64 --headless --path godot/game --script res://tests/Smoke.gd
+          /tmp/godot/Godot_v4.7.2-stable_linux.x86_64 --headless --path godot/game --scene res://tests/SmokeScene.tscn
       - name: Inspect source data and scene references
         run: |
           python3 - <<'PY'
