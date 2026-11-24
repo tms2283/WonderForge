@@ -1,3 +1,24 @@
+# WonderForge: Genesis — Cross-platform 3D engineering adventure
+
+**Current active direction:** A real Godot 4.7.2 game, not a browser dashboard. The Raspberry Pi 4B (4 GB) is the *minimum* target; Windows/Linux gaming PCs use higher-quality assets and graphics tiers. The premium visual/physics/RPG production is **in progress**, not shipped.
+
+**[▶ Get the Windows/Linux playable alpha (GitHub Actions artifacts)](https://github.com/tms2283/WonderForge/actions/runs/45330259622)** — select `WonderForge-Genesis-Windows-x64` or `WonderForge-Genesis-Linux-x64` under **Artifacts**, download, extract, keep executable and accompanying `.pck` together, and launch. GitHub login may be needed to download artifacts. The Linux export passed a 30-frame headless executable smoke test; Windows graphical playtesting remains a manual acceptance gate.
+
+**[Open the Godot source](godot-genesis/)** · **[Agent production spec](godot-genesis/WONDERFORGE-ULTIMATE-AGENT-SPEC.md)** · **[Agent implementation handoff](godot-genesis/docs/LOCAL-AGENT-HANDOFF-v0.3.md)** · **[What is implemented and still missing](godot-genesis/docs/IMPLEMENTATION-STATUS-v0.3.md)** · **[Actual release evidence](godot-genesis/docs/RELEASE-EVIDENCE-v0.3.md)**
+
+### v0.3 actual playable features
+
+- Founders' Valley 3D exploration with a roaming third-person character and controller bindings
+- Modular rover **garage** (frame, motor, tires, suspension, gearing, battery) whose selected specifications affect Godot vehicle parameters
+- Sequential six-gate proving course with recorded time/speed/energy, hypothesize-then-test journal, repeatable results and data saved across sessions
+- Local placement of collidable build parts with rotation and undo/redo; advanced dynamic Besiege-like joint assembly is **not yet** implemented
+- Original workshop and observatory glTF geometry at Explorer/Creator detail tiers, an animated preview character, context prompts and optional offline scripted/local-hosted ORBIT
+- Developer checks, native Godot scene import and runtime contract tests; Windows/Linux x64 standalone exports through CI
+
+The legacy Raspberry Pi OS/browser integration remains below for reference; it is **not** the primary game experience.
+
+---
+
 # WonderForge OS 2027 · Engineering Edition 0.7
 
 **An installable, offline-first invention station for one shared Raspberry Pi 4 Model B (4 GB RAM).** Built for two home-educated brothers, age 11 and 13, with individual Linux logins and a consciously shared project space. This edition moves beyond a browser-only demonstration to include an actual per-user portal service, filesystem permissions, an app-launch backend, account provisioning, a native Debian package, an original playable-content Luanti worldmod, and optional UID-based offline enforcement.
