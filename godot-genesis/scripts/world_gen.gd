@@ -6,6 +6,8 @@ class_name GenesisLandscape
 const EXTENT := 95.0
 var terrain_segments: int = 82
 var tree_instances: int = 300
+var art_profile: String = "creator"
+
 var terrain_collision: StaticBody3D
 var landmarks: Array[Dictionary] = []
 
@@ -139,27 +141,51 @@ func _build_landmarks() -> void:
 func _register(name: String, x: float, z: float, kind: String, description: String, reward: String) -> void:
 	landmarks.append({"name": name, "position": Vector3(x, height_at(x, z) + 1.2, z), "kind": kind, "description": description, "reward": reward})
 
+func _place_original_model(stem: String, at: Vector3) -> bool:
+	# Signed-off original glTF model assets, with independent low/desktop mesh
+	# variants. Godot imports these GLBs as PackedScenes at editor import time.
+	var tier := "explorer" if art_profile == "explorer" else "creator"
+	var path := "res://assets/models/%s_%s.glb" % [stem,tier]
+	if not ResourceLoader.exists(path): return false
+	var scene: PackedScene = load(path) as PackedScene
+	if scene == null: return false
+	var art: Node3D = scene.instantiate() as Node3D
+	if art == null: return false
+	art.name = "OriginalArt_%s_%s" % [stem,tier]
+	art.position = at
+	add_child(art)
+	return true
+
+func _sign(text_value: String, at: Vector3, color: Color) -> void:
+	var label := Label3D.new()
+	label.text = text_value
+	label.font_size = 33
+	label.pixel_size = 0.009
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	label.modulate = color
+	label.position = at
+	add_child(label)
+
 func _make_workshop(where: Vector2) -> void:
 	var x := where.x; var z := where.y; var y := height_at(x, z)
-	_box(Vector3(x, y + 0.28, z), Vector3(14, 0.6, 11), Color("9e9580"), "FoundersCourtyard")
-	_box(Vector3(x, y + 3.15, z - 4.6), Vector3(12, 6.0, 1.4), Color("d4c2a2"), "WorkshopNorthWall")
-	_box(Vector3(x - 5.8, y + 3.15, z), Vector3(1.2, 6, 10), Color("d4c2a2"), "WorkshopSide")
-	_box(Vector3(x + 5.8, y + 3.15, z), Vector3(1.2, 6, 10), Color("d4c2a2"), "WorkshopSide")
-	var roof := _box(Vector3(x, y + 6.9, z - 0.4), Vector3(13.2, 0.6, 11.3), Color("355967"), "Workshop_IndustrialCopperRoof")
-	roof.rotation.z = -0.08
-	for i in range(5):
-		_box(Vector3(x - 4.8 + i * 2.4, y + 0.82, z + 1.2), Vector3(0.18, 0.2, 5.0), Color("e7c77d"), "WorkshopFloorEngineeringGrids")
+	if not _place_original_model("founders_workshop",Vector3(x,y,z)):
+		# Editor import unavailable: blockout falls back without crashing.
+		_box(Vector3(x,y+0.28,z),Vector3(14,0.6,11),Color("aab0a2"),"WorkshopFallbackFoundation")
+		_box(Vector3(x,y+3.2,z-4.6),Vector3(12,6,1.4),Color("d4c2a2"),"WorkshopFallbackWall")
+	_sign("FOUNDERS' WORKSHOP  /  G: ENGINEER A ROVER",Vector3(x,y+9.8,z+5.5),Color("ebdbb0"))
 	_make_beacon(x - 7.5, z + 7.4, Color("ffcf7b"))
 	_register("The Founders' Workshop", x, z + 7.3, "workshop", "Design your first working bridge. Collect parts, test a prototype, and revise your design.", "Timber x12")
 
 func _make_observatory(where: Vector2) -> void:
 	var x := where.x; var z := where.y; var y := height_at(x, z)
-	_cylinder(Vector3(x, y + 2.0, z), 7.2, 4, Color("d6c9b0"), "AstralLibraryFoundation", 24)
-	_cylinder(Vector3(x, y + 6.9, z), 5.2, 6.4, Color("4c6775"), "AstralObservatoryDome", 18)
-	var ring := TorusMesh.new()
-	ring.inner_radius = 4.3; ring.outer_radius = 4.9
-	var portal := _object(ring, Vector3(x, y + 12, z), Color("efd19a"), "CelestialOrreryRing")
-	portal.rotation.x = PI * 0.52
+	if not _place_original_model("astral_observatory",Vector3(x,y,z)):
+		_cylinder(Vector3(x,y+2.0,z),7.2,4,Color("d6c9b0"),"AstralLibraryFallback",24)
+		var ring := TorusMesh.new()
+		ring.inner_radius = 4.3
+		ring.outer_radius = 4.9
+		var portal := _object(ring,Vector3(x,y+12,z),Color("efd19a"),"CelestialOrreryFallback")
+		portal.rotation.x = PI*0.52
+	_sign("ASTRAL OBSERVATORY  /  LOOK UP",Vector3(x,y+15,z),Color("d5c1f3"))
 	_make_beacon(x + 8, z + 4, Color("c0a1ff"))
 	_register("Celestial Observatory", x + 8, z + 4, "astronomy", "Map a star path. Use angles, observation, and logic to guide a skyship.", "Stardust x6")
 

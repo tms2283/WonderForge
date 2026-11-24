@@ -26,3 +26,7 @@ A feature is done only when its implementation (not merely its design) is naviga
 ## Priority
 
 Workstream 00 parse/run, 01 hero art, 02 graph/parts, 03 builder UX, 04 simulation, 05 handling, 06 authored 15-minute adventure, then racing/settlements/ORBIT/optimization. Prioritize one exceptional full playable vertical slice over dozens of hollow map markers.
+
+## Current working baseline (v0.3)
+
+Before modifying game systems, run `godot --headless --path godot-genesis --script res://tests/runtime_smoke.gd` **after** normal Godot import and inspect `docs/IMPLEMENTATION-STATUS-v0.3.md`. Preserve the `GenesisRoverBlueprint` schema and `genesis_save_v1.json`, test independent workshop selections, checkpoint order, journal persistence, builder collision/undo/redo and all three quality profiles. Keep original model provenance and generated asset integrity checks in CI. The required manual gameplay gate is in `docs/LOCAL-AGENT-HANDOFF-v0.3.md`; automated headless success does not replace first-person playtesting and art review.

@@ -45,6 +45,7 @@ func _ready() -> void:
 	landscape = WORLD_SCRIPT.new()
 	landscape.terrain_segments = int(quality_settings["terrain_segments"])
 	landscape.tree_instances = int(quality_settings["tree_instances"])
+	landscape.art_profile = quality_name
 	landscape.name = "FoundersValley"
 	add_child(landscape)
 	player = PLAYER_SCRIPT.new()

@@ -46,6 +46,22 @@ def check_catalog():
     require(all(x['implementation_status']=='DESIGN_SPEC_NOT_PLAYABLE' for x in q['quests']), 'Spec must not masquerade as implemented missions')
     return len(p['parts']),len(q['quests'])
 
+def check_original_assets():
+    from hashlib import sha256
+    manifest=json.loads((ROOT/'assets/models/asset_manifest.json').read_text())
+    require(len(manifest['assets'])>=4,'Provide actual Explorer and desktop original 3D models')
+    for row in manifest['assets']:
+        path=ROOT/'assets/models'/f"{row['asset']}.glb"
+        require(path.is_file(),'Missing source 3D model '+str(path))
+        data=path.read_bytes()
+        require(data[:4]==b'glTF','Invalid binary GLB header: '+path.name)
+        require(sha256(data).hexdigest()==row['sha256'],'Asset checksums differ: '+path.name)
+        require(row['triangles']>=1000 and row['bytes']<2_000_000,'Invalid model LOD budget '+path.name)
+    require((ROOT/'tests/runtime_smoke.gd').is_file(),'Godot integration smoke test missing')
+    require((ROOT/'scripts/rover_blueprint.gd').is_file(),'Rover blueprint source missing')
+    require((ROOT/'scripts/trial_course.gd').is_file(),'Playable proving-ground source missing')
+    return len(manifest['assets'])
+
 def check_quality():
     s=(ROOT/'scripts/quality_profiles.gd').read_text()
     for mode in ['explorer','creator','ultra']:
@@ -64,9 +80,10 @@ def check_docs():
 def main():
     script_count=check_scenes_and_scripts()
     part_count,quest_count=check_catalog()
-    check_quality();check_docs()
+    check_quality();check_docs();model_count=check_original_assets()
     print(f'PASS static source contracts | GDScript files: {script_count}, part specs: {part_count}, quest briefs: {quest_count}')
-    print('NOTICE: Godot engine parse, runtime gameplay, graphics quality and Pi device certification NOT tested here')
+    print(f'Original geometry with sha256 integrity: {model_count} GLB tiers')
+    print('NOTICE: Static checks do not verify Godot playability, rendered art quality or Pi certification')
 
 if __name__=='__main__':
     try: main()

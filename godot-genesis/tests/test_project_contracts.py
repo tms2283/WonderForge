@@ -13,5 +13,6 @@ class ProjectContracts(unittest.TestCase):
         p,q=v.check_catalog();self.assertGreaterEqual(p,40);self.assertGreaterEqual(q,24)
     def test_quality(self): v.check_quality()
     def test_docs(self): v.check_docs()
+    def test_real_original_assets(self): self.assertEqual(v.check_original_assets(),4)
 
 if __name__=='__main__': unittest.main()

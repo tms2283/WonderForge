@@ -1,0 +1,47 @@
+{
+  "generator": "art_pipeline/generate_original_models.py",
+  "runtime_dependencies": [],
+  "asset_license": "original WonderForge MIT design meshes",
+  "assets": [
+    {
+      "asset": "founders_workshop_creator",
+      "source": "original deterministic procedural art",
+      "preview_status": "work-in-progress authored geo",
+      "quality": "creator_ultra",
+      "nodes": 255,
+      "triangles": 7704,
+      "bytes": 196688,
+      "sha256": "4df410c07796748d593db8f8eee7f1a7f4cba5b3a79fb5d4461460a1eda5fa8a"
+    },
+    {
+      "asset": "astral_observatory_creator",
+      "source": "original deterministic procedural art",
+      "preview_status": "work-in-progress authored geo",
+      "quality": "creator_ultra",
+      "nodes": 70,
+      "triangles": 6464,
+      "bytes": 91732,
+      "sha256": "30a57f39c6e307d2fcd08823857de6563ab3f0d26fc0ef6ad98a333694032f01"
+    },
+    {
+      "asset": "founders_workshop_explorer",
+      "source": "original deterministic procedural art",
+      "preview_status": "work-in-progress authored geo",
+      "quality": "explorer",
+      "nodes": 157,
+      "triangles": 3376,
+      "bytes": 109860,
+      "sha256": "d0beffb1c930c4330da6c59bcefd8d52da5eaee468cbef63c5e2b66947c9c6b5"
+    },
+    {
+      "asset": "astral_observatory_explorer",
+      "source": "original deterministic procedural art",
+      "preview_status": "work-in-progress authored geo",
+      "quality": "explorer",
+      "nodes": 46,
+      "triangles": 2260,
+      "bytes": 44136,
+      "sha256": "91501f4a97f7d1715a07792e0e865234996394d4f394256a4092f95ed704f5f8"
+    }
+  ]
+}
