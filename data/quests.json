@@ -1,0 +1,511 @@
+[
+  {
+    "id": "sky-fortress",
+    "title": "Sky Fortress",
+    "category": "Worlds",
+    "emoji": "🏰",
+    "description": "Build a floating fortress with a drawbridge, defense towers, and a secret laboratory.",
+    "duration": "2–4 hours",
+    "level": "Starter",
+    "steps": [
+      "Sketch your fortress from above using squares and triangles.",
+      "Build three prototypes in Pocket Builder with different foundations.",
+      "Rebuild your favorite in a Luanti creative world; test the drawbridge mechanism.",
+      "Give your brother a guided tour and explain what holds the structure together."
+    ],
+    "hints": [
+      "Begin with a 5×5 platform and add two supporting columns. A simple model beats a perfect plan."
+    ],
+    "tools": [
+      "Pocket Builder",
+      "Luanti"
+    ],
+    "artifact": "A fortress blueprint",
+    "brothers": "One brother builds defenses; the other designs secret doors, then swap.",
+    "stretch": "Calculate how many blocks a 20×20 platform needs and compare three material choices."
+  },
+  {
+    "id": "robot-rescue",
+    "title": "Robot Rescue Squad",
+    "category": "Engineering",
+    "emoji": "🤖",
+    "description": "Invent a robot that detects something and responds with light, sound, or movement.",
+    "duration": "2–3 hours",
+    "level": "Explorer",
+    "steps": [
+      "Draw a diagram of input → logic → output.",
+      "Test an LED and sensor in simulation before wiring.",
+      "With an adult, wire a low-voltage Pico 2 W circuit and write a short MicroPython program.",
+      "Measure false alarms and improve your design."
+    ],
+    "hints": [
+      "Start with a blinking LED. Then choose a sensor that makes the light react to something real."
+    ],
+    "tools": [
+      "Thonny",
+      "MicroPython",
+      "Pico 2 W"
+    ],
+    "artifact": "A working rescue-bot prototype",
+    "brothers": "One codes the reaction; the other builds the protective case, then swap.",
+    "stretch": "Add a second sensor and make the program respond to combinations."
+  },
+  {
+    "id": "mars-colony",
+    "title": "Terraform Mars (Carefully!)",
+    "category": "Science",
+    "emoji": "🪐",
+    "description": "Build a Mars base where every design choice has to survive actual engineering constraints.",
+    "duration": "3–5 hours",
+    "level": "Explorer",
+    "steps": [
+      "Research Martian temperature, pressure, water, radiation, and energy needs.",
+      "Design a habitat plan with areas for air, water, food, and power.",
+      "Build a base in Luanti and annotate each life-support system.",
+      "Write down what is physically feasible and what is still science fiction."
+    ],
+    "hints": [
+      "Begin with one question: where would the first settlers get breathable oxygen?"
+    ],
+    "tools": [
+      "Luanti",
+      "Kiwix",
+      "Stellarium"
+    ],
+    "artifact": "A research-backed Mars settlement",
+    "brothers": "One investigates energy and water; the other designs habitats and food systems.",
+    "stretch": "Calculate daily energy and water requirements for four imaginary astronauts."
+  },
+  {
+    "id": "pixel-pal",
+    "title": "Pixel Pal: The Game",
+    "category": "Creative",
+    "emoji": "👾",
+    "description": "Design a friendly creature, animate it, then program a playable adventure.",
+    "duration": "2 hours",
+    "level": "Starter",
+    "steps": [
+      "Draw an 8-frame animation with a consistent silhouette.",
+      "Create simple obstacles and rewards in Scratch.",
+      "Use variables to control the creature’s energy and speed.",
+      "Invite your brother to playtest and change two things from his feedback."
+    ],
+    "hints": [
+      "First make the character move left and right. Your art can improve after the game works."
+    ],
+    "tools": [
+      "Scratch",
+      "Krita"
+    ],
+    "artifact": "A playable mini-game",
+    "brothers": "One makes art and levels; the other codes the game, then switch.",
+    "stretch": "Give the creature a behavior that reacts to the player’s actions."
+  },
+  {
+    "id": "secret-bridge",
+    "title": "The Bridge That Shouldn’t Stand",
+    "category": "Engineering",
+    "emoji": "🌉",
+    "description": "Try to cross an impossible canyon using geometry, forces, and clever design.",
+    "duration": "90 minutes",
+    "level": "Starter",
+    "steps": [
+      "Build three paper-bridge prototypes with identical spans.",
+      "Vary only one structural element, such as adding triangular braces.",
+      "Record the load each bridge carries before failure.",
+      "Build a voxel replica and explain the strongest shape."
+    ],
+    "hints": [
+      "Triangles help structures resist deforming. Can you compare a rectangle and a triangle?"
+    ],
+    "tools": [
+      "Paper models",
+      "Pocket Builder"
+    ],
+    "artifact": "A tested bridge design",
+    "brothers": "One builds while the other records measurements; switch for the second design.",
+    "stretch": "Create a graph of load capacity versus bridge mass."
+  },
+  {
+    "id": "midnight-sky",
+    "title": "Starship Navigator",
+    "category": "Science",
+    "emoji": "🔭",
+    "description": "Chart the night sky and create a fictional navigation system from real astronomy.",
+    "duration": "2 hours",
+    "level": "Starter",
+    "steps": [
+      "Use Stellarium to identify five real constellations or bright stars.",
+      "Record their seasonal visibility and approximate direction.",
+      "Draw a star map for a science-fiction explorer.",
+      "Explain how the map differs from real GPS and celestial navigation."
+    ],
+    "hints": [
+      "Choose one bright star and find its name and direction before adding others."
+    ],
+    "tools": [
+      "Stellarium",
+      "Inkscape"
+    ],
+    "artifact": "A star map",
+    "brothers": "One researches stars and the other illustrates the chart.",
+    "stretch": "Model the phases of the Moon accurately across a month."
+  },
+  {
+    "id": "music-reactor",
+    "title": "Music Reactor",
+    "category": "Creative",
+    "emoji": "🎼",
+    "description": "Code an original electronic soundtrack for your own video game.",
+    "duration": "90 minutes",
+    "level": "Starter",
+    "steps": [
+      "Make a short beat with Sonic Pi.",
+      "Create an original melody using a small set of notes.",
+      "Change tempo and instruments to fit different scenes.",
+      "Export or record your own music and share a version with your brother."
+    ],
+    "hints": [
+      "Start with a simple four-beat loop, then change one sound every four measures."
+    ],
+    "tools": [
+      "Sonic Pi"
+    ],
+    "artifact": "An original soundtrack",
+    "brothers": "One creates percussion and the other invents a melody; combine both.",
+    "stretch": "Write code that changes the music when the imaginary spaceship enters danger."
+  },
+  {
+    "id": "future-city",
+    "title": "City of Tomorrow",
+    "category": "Worlds",
+    "emoji": "🏙️",
+    "description": "Design a beautiful city with transit, clean water, energy, parks, and places to live.",
+    "duration": "4+ hours",
+    "level": "Explorer",
+    "steps": [
+      "Decide on five services a good city must provide.",
+      "Sketch districts and major transportation routes.",
+      "Build the city together in a private Luanti world.",
+      "Test a disaster scenario and redesign a weak part."
+    ],
+    "hints": [
+      "Start with roads, water, power, homes, and a school. Then let the skyline grow."
+    ],
+    "tools": [
+      "Luanti",
+      "Inkscape"
+    ],
+    "artifact": "A co-op future city",
+    "brothers": "Each brother builds one district; connect both with a transport network.",
+    "stretch": "Measure walking distances and redesign streets for efficiency."
+  },
+  {
+    "id": "ai-detective",
+    "title": "The AI Detective Agency",
+    "category": "AI",
+    "emoji": "🕵️",
+    "description": "Learn to catch convincing-sounding AI mistakes by investigating facts and sources.",
+    "duration": "1 hour",
+    "level": "Starter",
+    "steps": [
+      "Write three science questions with verifiable answers.",
+      "Ask a supervised AI or use pre-written answer cards.",
+      "Check every factual claim against two reputable references.",
+      "Create a detective poster explaining how you checked the answers."
+    ],
+    "hints": [
+      "Try a claim that sounds believable but has a measurable quantity."
+    ],
+    "tools": [
+      "Kiwix",
+      "Research notes"
+    ],
+    "artifact": "An AI fact-check poster",
+    "brothers": "One proposes claims; the other checks them, then reverse roles.",
+    "stretch": "Design a checklist to catch misleading citations or invented experiments."
+  },
+  {
+    "id": "solar-dome",
+    "title": "Solar Dome Survival",
+    "category": "Engineering",
+    "emoji": "☀️",
+    "description": "Build a mini greenhouse and investigate light, heat, power, and plant growth.",
+    "duration": "1–2 weeks",
+    "level": "Explorer",
+    "steps": [
+      "Design two small identical plant environments.",
+      "Change one variable, such as light duration or temperature.",
+      "Measure and graph observations over several days.",
+      "Apply your findings to a solar dome in your game world."
+    ],
+    "hints": [
+      "Choose a single variable and record observations before you change the design."
+    ],
+    "tools": [
+      "Thonny",
+      "Python charts",
+      "Luanti"
+    ],
+    "artifact": "An experiment log and dome",
+    "brothers": "One gathers daily measurements; the other updates the chart, then swap.",
+    "stretch": "Estimate how much solar-panel area a small greenhouse would need."
+  },
+  {
+    "id": "maker-mark",
+    "title": "Inventor’s Identity Studio",
+    "category": "Creative",
+    "emoji": "🎨",
+    "description": "Create a spectacular logo and poster for a fictional invention company.",
+    "duration": "2 hours",
+    "level": "Starter",
+    "steps": [
+      "Pick three words describing your invention brand.",
+      "Sketch two symbols with different shapes.",
+      "Build a scalable vector logo and a poster with purposeful typography.",
+      "Get feedback and improve readability at small sizes."
+    ],
+    "hints": [
+      "The best logo often works in plain black and white first."
+    ],
+    "tools": [
+      "Inkscape",
+      "Krita"
+    ],
+    "artifact": "A logo and poster",
+    "brothers": "One acts as designer and the other as demanding—but kind—client.",
+    "stretch": "Create a complete identity kit: logo, colors, typography, and icon family."
+  },
+  {
+    "id": "arcade-lab",
+    "title": "Build Your Own Arcade",
+    "category": "Creative",
+    "emoji": "🕹️",
+    "description": "Code an original 2D game and design its characters, rules, difficulty, and soundtrack.",
+    "duration": "6+ hours",
+    "level": "Advanced",
+    "steps": [
+      "Write a one-paragraph game idea and three simple rules.",
+      "Prototype the main interaction in Scratch or Godot.",
+      "Make or draw all your own art, sound, and levels.",
+      "Playtest with your brother and iterate based on evidence."
+    ],
+    "hints": [
+      "Make a playable character with one action before drawing every background."
+    ],
+    "tools": [
+      "Godot",
+      "Krita",
+      "Sonic Pi"
+    ],
+    "artifact": "An original game",
+    "brothers": "One programs interactions while the other makes visuals and sounds. Switch later.",
+    "stretch": "Add an accessible tutorial and two distinct levels with measured difficulty."
+  },
+  {
+    "id": "pico-weather",
+    "title": "Weather Station Alpha",
+    "category": "Engineering",
+    "emoji": "🌦️",
+    "description": "Build a local data station that measures temperature or light over time.",
+    "duration": "3 hours",
+    "level": "Explorer",
+    "steps": [
+      "Choose a compatible sensor and read its data sheet.",
+      "With an adult, connect it to a Pico 2 W using 3.3V logic.",
+      "Write code to log measurements with timestamps.",
+      "Graph the results and explain unusual readings."
+    ],
+    "hints": [
+      "Make a measurement every ten seconds. Observe whether the data changes as expected."
+    ],
+    "tools": [
+      "Pico 2 W",
+      "MicroPython",
+      "Python charts"
+    ],
+    "artifact": "A sensor dashboard",
+    "brothers": "One handles hardware checks; the other creates the graph and report.",
+    "stretch": "Add an alert threshold and document false positives."
+  },
+  {
+    "id": "underwater-odyssey",
+    "title": "Underwater Odyssey",
+    "category": "Worlds",
+    "emoji": "🐠",
+    "description": "Build a marine research city and investigate buoyancy, pressure, and ecology.",
+    "duration": "3 hours",
+    "level": "Explorer",
+    "steps": [
+      "Research the effects of increasing water pressure with depth.",
+      "Sketch a research habitat and emergency escape route.",
+      "Construct a submerged station in a Luanti world.",
+      "Make a museum room with accurate facts about three ocean species."
+    ],
+    "hints": [
+      "Real pressure increases with depth. How would that affect windows and hulls?"
+    ],
+    "tools": [
+      "Luanti",
+      "Kiwix"
+    ],
+    "artifact": "An underwater research base",
+    "brothers": "One designs marine habitats while the other creates the lab and transport routes.",
+    "stretch": "Explain pressure using an equation and depth comparison."
+  },
+  {
+    "id": "family-invention",
+    "title": "Invention for Someone Else",
+    "category": "Engineering",
+    "emoji": "💛",
+    "description": "Use your skills to make something that makes real life easier for someone you care about.",
+    "duration": "1 week",
+    "level": "Explorer",
+    "steps": [
+      "Ask a family member what small inconvenience they actually have.",
+      "List constraints, including cost, safety, and usability.",
+      "Build a cardboard, code, or electronics prototype.",
+      "Watch them use it, gather feedback, and revise."
+    ],
+    "hints": [
+      "The most useful inventions solve an actual need, not just something exciting to build."
+    ],
+    "tools": [
+      "Drawing tools",
+      "Thonny",
+      "Materials"
+    ],
+    "artifact": "A real-world helpful prototype",
+    "brothers": "Interview separately, then combine ideas and build together.",
+    "stretch": "Make accessible instructions so another family can reproduce the solution."
+  },
+  {
+    "id": "space-message",
+    "title": "Interplanetary Radio",
+    "category": "Science",
+    "emoji": "📡",
+    "description": "Invent a reliable way for an imaginary rover to send information back to Earth.",
+    "duration": "2 hours",
+    "level": "Explorer",
+    "steps": [
+      "Learn how signal travel time depends on distance and light speed.",
+      "Create a short binary message and an error-checking scheme.",
+      "Build a simple sender-receiver simulation in Python.",
+      "Explain why real-time joystick driving is difficult on Mars."
+    ],
+    "hints": [
+      "Think about the time it takes a signal to cross millions of kilometers."
+    ],
+    "tools": [
+      "Thonny",
+      "Python"
+    ],
+    "artifact": "A communications simulator",
+    "brothers": "One programs a sender; the other designs and decodes the receiver.",
+    "stretch": "Simulate corrupted bits and try a parity check."
+  },
+  {
+    "id": "mechanical-creature",
+    "title": "The Clockwork Creature",
+    "category": "Creative",
+    "emoji": "🦾",
+    "description": "Design a moving creature using mechanical joints and animation principles.",
+    "duration": "4 hours",
+    "level": "Advanced",
+    "steps": [
+      "Draw a creature and identify its joints.",
+      "Build a low-poly model or block sculpture in Blockbench.",
+      "Animate a simple repeating walking cycle.",
+      "Explain how a real motor might drive one joint."
+    ],
+    "hints": [
+      "Model a single leg before making an entire creature."
+    ],
+    "tools": [
+      "Blockbench",
+      "Luanti"
+    ],
+    "artifact": "A creature and animation",
+    "brothers": "One creates anatomy and appearance; the other plans the motion.",
+    "stretch": "Make the walking loop believable at two speeds."
+  },
+  {
+    "id": "library-of-wonders",
+    "title": "The Library of Wonders",
+    "category": "AI",
+    "emoji": "📚",
+    "description": "Turn offline reference material into an extraordinary, source-grounded museum.",
+    "duration": "3 hours",
+    "level": "Advanced",
+    "steps": [
+      "Choose a scientific topic worth teaching.",
+      "Collect reliable offline references and record their sources.",
+      "Create a museum or booklet with three claims and supporting evidence.",
+      "Give your brother a tour and invite a challenge question."
+    ],
+    "hints": [
+      "Pick one question and find a source that contains a measurable answer."
+    ],
+    "tools": [
+      "Kiwix",
+      "Kolibri",
+      "Luanti"
+    ],
+    "artifact": "A cited mini museum",
+    "brothers": "One researches and cites; the other designs the exhibition.",
+    "stretch": "Build a retrieval index and check that every statement traces to a source."
+  },
+  {
+    "id": "rock-collector",
+    "title": "The Crystal Cartographer",
+    "category": "Science",
+    "emoji": "💎",
+    "description": "Explore the hidden world of rocks and minerals, then make an evidence-based geology atlas.",
+    "duration": "2–3 hours",
+    "level": "Explorer",
+    "steps": [
+      "Collect three safe rock samples, photograph them, and label where each was found without damaging protected sites.",
+      "Observe color, texture, grain size and any visible layers with a magnifying glass.",
+      "Compare observations with a trusted geology reference; distinguish what you know from what you are guessing.",
+      "Make a digital exhibit: an illustrated map, labeled photos, and one unanswered question."
+    ],
+    "hints": [
+      "Start with three visible properties: color, texture and grain size. Which observations can another person repeat?"
+    ],
+    "tools": [
+      "Magnifying glass",
+      "Camera",
+      "Drawing app",
+      "Offline reference"
+    ],
+    "artifact": "A geology discovery atlas",
+    "brothers": "One is the field observer and the other checks reference sources; then swap.",
+    "stretch": "Use a safe hardness comparison and discuss why appearances alone may misidentify minerals."
+  },
+  {
+    "id": "soundscape",
+    "title": "Echo Isles Soundscape",
+    "category": "Creative",
+    "emoji": "🎶",
+    "description": "Give a world its own sound: record, layer and edit original audio to tell a story.",
+    "duration": "90 minutes",
+    "level": "Starter",
+    "steps": [
+      "Choose a scene and write five emotions or sensations you want the sound to evoke.",
+      "Record three original sounds using a microphone with adult-approved privacy precautions.",
+      "Use Audacity to trim, layer and adjust volume levels; avoid clipping.",
+      "Play your composition for your brother. Ask what place or mood he imagined and revise one element."
+    ],
+    "hints": [
+      "A soundscape only needs three ingredients: an atmosphere, a rhythm, and one surprising detail."
+    ],
+    "tools": [
+      "Audacity",
+      "Microphone",
+      "Voice recorder"
+    ],
+    "artifact": "An original 30-second audio landscape",
+    "brothers": "One records ambient sound and one edits; swap halfway through.",
+    "stretch": "Make two versions—calm and mysterious—using the same source recordings."
+  }
+]

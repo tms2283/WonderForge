@@ -1,0 +1,50 @@
+name: WonderForge CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-and-security:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: All unit and integration tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Syntax and shell safety
+        run: |
+          python3 -m compileall -q server.py portal_security.py device_health.py tools scripts
+          node --check web/app.js
+          node --check web/labs.js
+          node --check web/journal.js
+          for s in installer/*.sh scripts/*.sh image/*.sh start.sh; do bash -n "$s"; done
+      - name: Verify source archive has no credentials or private state
+        run: |
+          test ! -e .env
+          test ! -e dist/wonderforge-os_0.6.0_all.deb
+          ! git ls-files | grep -E '(^|/)(portal\.key|.*\.sqlite3|.*\.pyc|\.env)$'
+  package:
+    needs: source-and-security
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build reproducible Debian application payload
+        run: |
+          bash scripts/build-deb.sh /tmp/wonderforge-artifacts
+          dpkg-deb --contents /tmp/wonderforge-artifacts/wonderforge-os_0.6.0_all.deb
+          dpkg-deb --info /tmp/wonderforge-artifacts/wonderforge-os_0.6.0_all.deb
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wonderforge-os-0.6-deb
+          path: /tmp/wonderforge-artifacts/wonderforge-os_0.6.0_all.deb
+          if-no-files-found: error

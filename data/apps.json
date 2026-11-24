@@ -1,0 +1,121 @@
+[
+  {
+    "id": "voxel-universe",
+    "title": "Voxel Universe",
+    "emoji": "🧱",
+    "description": "Build and explore a shared, moddable block universe.",
+    "programs": [
+      "Luanti",
+      "Mineclonia / VoxeLibre",
+      "WonderForge Questboard"
+    ],
+    "firstProject": "Create a village with one building for each invention.",
+    "availability": "Luanti is installable; Mineclonia and WonderForge mod need setup."
+  },
+  {
+    "id": "pixel-and-paint",
+    "title": "Pixel & Paint",
+    "emoji": "🎨",
+    "description": "Paint worlds, design textures, and animate original characters.",
+    "programs": [
+      "Krita",
+      "GIMP",
+      "Scratch"
+    ],
+    "firstProject": "Draw a robot with three distinct facial expressions.",
+    "availability": "Krita/GIMP via apt; Scratch supported on Raspberry Pi OS Full."
+  },
+  {
+    "id": "3d-object-forge",
+    "title": "3D Object Forge",
+    "emoji": "🧊",
+    "description": "Model, sculpt, and animate blocky game assets.",
+    "programs": [
+      "Blockbench (PWA)",
+      "Blender (advanced, performance-limited)"
+    ],
+    "firstProject": "Build a low-poly spaceship with six unique parts.",
+    "availability": "Blockbench is a browser PWA; offline install needs an initial online setup."
+  },
+  {
+    "id": "code-engine",
+    "title": "Code Engine",
+    "emoji": "⌨️",
+    "description": "Turn ideas into working games and machines.",
+    "programs": [
+      "Scratch",
+      "Thonny",
+      "Godot (ARM64)",
+      "Python"
+    ],
+    "firstProject": "Make an object move when a key is pressed.",
+    "availability": "Scratch and Thonny supported; Godot install/renderer must be tested on actual hardware."
+  },
+  {
+    "id": "electronics-hangar",
+    "title": "Electronics Hangar",
+    "emoji": "⚡",
+    "description": "Make LEDs, sensors, motors and microcontrollers useful.",
+    "programs": [
+      "Thonny",
+      "MicroPython",
+      "KiCad",
+      "GPIO Zero"
+    ],
+    "firstProject": "Write code that blinks an LED with a pattern.",
+    "availability": "Use a Pico 2 W and 3.3V circuits; adult-supervised electronics only."
+  },
+  {
+    "id": "sound-reactor",
+    "title": "Sound Reactor",
+    "emoji": "🎹",
+    "description": "Compose, code, and record music for your own creations.",
+    "programs": [
+      "Sonic Pi",
+      "Audacity"
+    ],
+    "firstProject": "Produce a 20-second original theme for an explorer.",
+    "availability": "Sonic Pi has an ARM64 AppImage option; audio integration needs Pi testing."
+  },
+  {
+    "id": "science-observatory",
+    "title": "Science Observatory",
+    "emoji": "🔭",
+    "description": "Explore the real sky, data, and scientific models.",
+    "programs": [
+      "Stellarium",
+      "Python",
+      "JupyterLab",
+      "PhET simulations"
+    ],
+    "firstProject": "Create a chart of the Moon’s phases.",
+    "availability": "Core Python works locally; certain datasets require separate downloads."
+  },
+  {
+    "id": "learning-vault",
+    "title": "Learning Vault",
+    "emoji": "📚",
+    "description": "An offline library of experiments, lessons, and references.",
+    "programs": [
+      "Kolibri",
+      "Kiwix",
+      "OpenStax content"
+    ],
+    "firstProject": "Research a question and record a credible source.",
+    "availability": "Software is free; content is not bundled and requires license-reviewed downloads."
+  },
+  {
+    "id": "technical-design-lab",
+    "title": "Technical Design Lab",
+    "emoji": "📐",
+    "description": "Draw engineering plans, circuit boards, and 3D-printable forms.",
+    "programs": [
+      "Inkscape",
+      "OpenSCAD",
+      "FreeCAD (advanced)",
+      "KiCad"
+    ],
+    "firstProject": "Design a keychain with a measured hole and thickness.",
+    "availability": "Heavy CAD apps are optional; performance varies across Pi models."
+  }
+]

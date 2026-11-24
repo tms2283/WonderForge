@@ -1,0 +1,466 @@
+[
+  {
+    "id": "triangles",
+    "title": "Why do triangles make structures rigid?",
+    "region": "Sky Citadel",
+    "kind": "Original WonderForge lesson",
+    "question": "Why do triangles make structures rigid?",
+    "concept": "A rectangle can shear into a parallelogram without changing its side lengths; a triangle cannot do this when its joints and members are rigid.",
+    "activity": "Build a square and a triangle from drinking straws and paper fasteners. Push both sideways with equal care. Add one diagonal to the square and repeat.",
+    "evidence": "Sketch each shape before and after. Record which shape changes angles.",
+    "safety": "Do not climb or stand on classroom prototypes.",
+    "keywords": [
+      "bridge",
+      "tower",
+      "triangle",
+      "brace",
+      "truss",
+      "strong",
+      "geometry"
+    ],
+    "difficulty": "Discover",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "bridge-load",
+    "title": "Where does a bridge send its load?",
+    "region": "Sky Citadel",
+    "kind": "Original WonderForge lesson",
+    "question": "Where does a bridge send its load?",
+    "concept": "A load travels along beams, joints, supports, and foundations. Engineers call this a load path.",
+    "activity": "Make two paper bridges with the same span. Change only the folded cross-section. Add coins one at a time to the same midpoint.",
+    "evidence": "Record the number of coins and the first location that bends. Repeat three times and compare.",
+    "safety": "Keep loads small and use only tabletop models.",
+    "keywords": [
+      "load",
+      "bridge",
+      "force",
+      "beam",
+      "support",
+      "strength",
+      "physics"
+    ],
+    "difficulty": "Experiment",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "scale",
+    "title": "How can you draw a real-sized idea on paper?",
+    "region": "Sky Citadel",
+    "kind": "Original WonderForge lesson",
+    "question": "How can you draw a real-sized idea on paper?",
+    "concept": "Scale drawings preserve ratios. A 1:10 sketch shows each centimeter on the page as ten centimeters on the object.",
+    "activity": "Measure a small table or storage box. Draw a top view at 1:10 and label the length and width.",
+    "evidence": "Calculate expected drawing lengths, then measure your sketch with a ruler.",
+    "safety": "Use a ruler safely; ask for help measuring large items.",
+    "keywords": [
+      "scale",
+      "ratio",
+      "geometry",
+      "design",
+      "CAD",
+      "blueprint",
+      "dimensions"
+    ],
+    "difficulty": "Engineer",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "robot-loop",
+    "title": "How do sensors become decisions?",
+    "region": "Robot Wilds",
+    "kind": "Original WonderForge lesson",
+    "question": "How do sensors become decisions?",
+    "concept": "A controller observes an input, compares it to a rule, and produces an output. This is an input–process–output loop.",
+    "activity": "Write a rule for a rescue robot: if light is below a threshold, turn on a lamp; otherwise turn it off. Act out the rule as a team.",
+    "evidence": "Make a table for five different sensor readings and your predicted outputs.",
+    "safety": "Do not connect electronics to household mains voltage.",
+    "keywords": [
+      "robot",
+      "sensor",
+      "input",
+      "output",
+      "decision",
+      "threshold",
+      "program"
+    ],
+    "difficulty": "Discover",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "resistor",
+    "title": "Why does an LED need a resistor?",
+    "region": "Robot Wilds",
+    "kind": "Original WonderForge lesson",
+    "question": "Why does an LED need a resistor?",
+    "concept": "Current is limited by the resistor in a simple series LED model. Ohm’s law gives I=(Vs−Vf)/R when Vs exceeds Vf. The actual diode is not a fixed-voltage device.",
+    "activity": "Use the WonderForge Circuit Lab to compare 220 Ω and 1000 Ω at the same simulated voltage. Predict the current before moving the slider.",
+    "evidence": "Write down current in milliamps and estimated resistor power for both models.",
+    "safety": "Simulation only. An adult must check the actual LED, supply, and resistor ratings before wiring. Never connect this example directly to a Pi GPIO pin.",
+    "keywords": [
+      "led",
+      "resistor",
+      "current",
+      "voltage",
+      "circuit",
+      "electricity",
+      "electronics",
+      "ohm"
+    ],
+    "difficulty": "Experiment",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "logic",
+    "title": "Why does an algorithm need exact instructions?",
+    "region": "Robot Wilds",
+    "kind": "Original WonderForge lesson",
+    "question": "Why does an algorithm need exact instructions?",
+    "concept": "An algorithm is an ordered, finite procedure. Computers follow instructions literally, including mistakes and missing conditions.",
+    "activity": "In Robot Logic Lab, write commands to collect the energy cell before visiting the flag. Debug the first blocked move instead of rewriting everything.",
+    "evidence": "Record your first command sequence, the failed step, and the smallest correction that worked.",
+    "safety": "This is a virtual coding challenge; no physical robot is controlled.",
+    "keywords": [
+      "algorithm",
+      "code",
+      "sequence",
+      "debug",
+      "instructions",
+      "programming",
+      "robot"
+    ],
+    "difficulty": "Engineer",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "classify",
+    "title": "How do scientists classify rocks?",
+    "region": "Crystal Deep",
+    "kind": "Original WonderForge lesson",
+    "question": "How do scientists classify rocks?",
+    "concept": "Scientists classify minerals by evidence including hardness, streak, cleavage, and crystal structure rather than surface color alone.",
+    "activity": "Sort three safe household materials by texture, luster and scratching behavior without damaging anything valuable. Research minerals later with an adult.",
+    "evidence": "Create a data table with at least three observable properties per sample.",
+    "safety": "Do not taste, crush or breathe dust from unknown rocks.",
+    "keywords": [
+      "rock",
+      "mineral",
+      "crystal",
+      "geology",
+      "hardness",
+      "classify",
+      "observation"
+    ],
+    "difficulty": "Discover",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "variables",
+    "title": "What makes an experiment fair?",
+    "region": "Crystal Deep",
+    "kind": "Original WonderForge lesson",
+    "question": "What makes an experiment fair?",
+    "concept": "Changing one independent variable at a time helps reveal cause and effect. A measured response is the dependent variable.",
+    "activity": "Compare how quickly the same volume of water drains through two different filter materials. Keep the container, initial volume, and height constant.",
+    "evidence": "Time each test three times and write the range, not just a single result.",
+    "safety": "Use clean water only. Do not drink experiment water.",
+    "keywords": [
+      "experiment",
+      "hypothesis",
+      "variable",
+      "measurement",
+      "scientific",
+      "method"
+    ],
+    "difficulty": "Experiment",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "crystal-forms",
+    "title": "Why do crystals have repeating shapes?",
+    "region": "Crystal Deep",
+    "kind": "Original WonderForge lesson",
+    "question": "Why do crystals have repeating shapes?",
+    "concept": "An ordered microscopic arrangement may produce repeating external patterns. The final shape also depends on how a crystal grows.",
+    "activity": "Build three candidate lattice patterns from equal-sized toy blocks and compare how each pattern repeats when extended.",
+    "evidence": "Photograph or sketch a repeating unit and predict the next layer.",
+    "safety": "Do not grow chemical crystals without adult approval.",
+    "keywords": [
+      "crystal",
+      "lattice",
+      "atoms",
+      "minerals",
+      "pattern",
+      "repeating",
+      "chemistry"
+    ],
+    "difficulty": "Engineer",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "mars-systems",
+    "title": "What must a Mars habitat provide?",
+    "region": "Red Frontier",
+    "kind": "Original WonderForge lesson",
+    "question": "What must a Mars habitat provide?",
+    "concept": "A habitat is a system of interacting needs: air, water, temperature, radiation shielding, food, power, and waste processing. One failure can affect the others.",
+    "activity": "Draw a block diagram showing how five habitat systems depend on one another. Circle the part with the most connections.",
+    "evidence": "Create a failure scenario, such as power loss, and trace three consequences.",
+    "safety": "Do not attempt pressure chambers or sealed human spaces.",
+    "keywords": [
+      "mars",
+      "space",
+      "habitat",
+      "systems",
+      "oxygen",
+      "power",
+      "water",
+      "radiation"
+    ],
+    "difficulty": "Discover",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "solar",
+    "title": "What changes how much power a panel can collect?",
+    "region": "Red Frontier",
+    "kind": "Original WonderForge lesson",
+    "question": "What changes how much power a panel can collect?",
+    "concept": "For a given panel, received power changes with light intensity, area, and the angle of incoming rays. Real electrical output adds losses and efficiency.",
+    "activity": "Use a flashlight and paper to compare the area of the light spot when the light hits straight on versus at an angle.",
+    "evidence": "Trace each spot and estimate the area using a square grid.",
+    "safety": "Never aim bright lights into anyone’s eyes. Do not stare at the Sun.",
+    "keywords": [
+      "solar",
+      "energy",
+      "panel",
+      "space",
+      "sunlight",
+      "angle",
+      "efficiency"
+    ],
+    "difficulty": "Experiment",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "orbits",
+    "title": "Why do satellites keep missing Earth?",
+    "region": "Red Frontier",
+    "kind": "Original WonderForge lesson",
+    "question": "Why do satellites keep missing Earth?",
+    "concept": "A satellite in orbit is falling under gravity while moving sideways fast enough to keep missing the surface. Real orbits are curved paths, not weightless escape from gravity.",
+    "activity": "Tie a foam ball to a string and rotate it slowly in an open space with adult supervision, or sketch a ball moving with sideways velocity and gravity arrows.",
+    "evidence": "Describe what changes when the sideways velocity becomes greater or smaller.",
+    "safety": "Keep the activity well away from people, glass and pets.",
+    "keywords": [
+      "orbit",
+      "satellite",
+      "gravity",
+      "velocity",
+      "earth",
+      "space"
+    ],
+    "difficulty": "Engineer",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "soundwaves",
+    "title": "How does sound travel?",
+    "region": "Echo Isles",
+    "kind": "Original WonderForge lesson",
+    "question": "How does sound travel?",
+    "concept": "Sound in air is a pressure wave. Its frequency relates to perceived pitch, while amplitude relates broadly to loudness.",
+    "activity": "Tap two differently sized containers gently. Record or imitate the sounds. Try shorter and longer vibrating rubber bands on a safe box.",
+    "evidence": "List the high and low pitches you hear and compare the vibrating lengths.",
+    "safety": "Keep sound volumes comfortable; protect your hearing.",
+    "keywords": [
+      "sound",
+      "frequency",
+      "pitch",
+      "wave",
+      "vibration",
+      "acoustics"
+    ],
+    "difficulty": "Discover",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "recording",
+    "title": "How can you capture a clean sound?",
+    "region": "Echo Isles",
+    "kind": "Original WonderForge lesson",
+    "question": "How can you capture a clean sound?",
+    "concept": "The microphone captures wanted sound plus environmental noise. Distance, room reflections, and levels change how clearly a recording communicates.",
+    "activity": "Record the same short voice line from near and far away in a quiet room. Play both back at a comfortable level.",
+    "evidence": "Compare clarity and background noise, then write down the setup of the clearer recording.",
+    "safety": "Do not record or publish another person without their permission.",
+    "keywords": [
+      "audio",
+      "microphone",
+      "recording",
+      "noise",
+      "sound",
+      "music"
+    ],
+    "difficulty": "Experiment",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "rhythm",
+    "title": "How do repeating patterns become music?",
+    "region": "Echo Isles",
+    "kind": "Original WonderForge lesson",
+    "question": "How do repeating patterns become music?",
+    "concept": "Rhythm organizes events in time. Repetition lets a listener predict, while variation creates surprise.",
+    "activity": "Create a four-beat pattern using tabletop taps. Repeat it three times, then change the final beat. Ask your brother what changed.",
+    "evidence": "Write beats as a simple grid and annotate where the variation occurs.",
+    "safety": "Tap gently and avoid damaging furniture.",
+    "keywords": [
+      "rhythm",
+      "music",
+      "timing",
+      "composition",
+      "pattern"
+    ],
+    "difficulty": "Engineer",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "loops",
+    "title": "What exactly does a loop do?",
+    "region": "Code Garden",
+    "kind": "Original WonderForge lesson",
+    "question": "What exactly does a loop do?",
+    "concept": "A loop repeats a set of operations until a count or condition changes. A loop without a useful exit can run indefinitely.",
+    "activity": "Write a tiny Python for-loop to print a countdown. Then change the starting number and predict the output before running it.",
+    "evidence": "Record what changes in the output and explain why the last iteration happens.",
+    "safety": "Only run code you understand; do not paste unknown commands.",
+    "keywords": [
+      "python",
+      "loop",
+      "iterations",
+      "for",
+      "programming",
+      "code"
+    ],
+    "difficulty": "Discover",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "coordinates",
+    "title": "How do game characters know where they are?",
+    "region": "Code Garden",
+    "kind": "Original WonderForge lesson",
+    "question": "How do game characters know where they are?",
+    "concept": "A 2D game commonly represents location with two coordinates, x and y. Movement updates one or both values.",
+    "activity": "Draw a 7×7 grid with a robot at (0,6). Write a list of positions after each Right or Up movement.",
+    "evidence": "Compare your paper trace with Robot Logic Lab and correct the first mismatch.",
+    "safety": "Keep the game activities offline and share only approved creations.",
+    "keywords": [
+      "coordinates",
+      "x",
+      "y",
+      "grid",
+      "games",
+      "coding",
+      "navigation"
+    ],
+    "difficulty": "Experiment",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  },
+  {
+    "id": "debug",
+    "title": "What is the fastest way to find a bug?",
+    "region": "Code Garden",
+    "kind": "Original WonderForge lesson",
+    "question": "What is the fastest way to find a bug?",
+    "concept": "A bug is a difference between expected and observed behavior. Small, repeatable tests help locate where an assumption fails.",
+    "activity": "Pick a broken sequence in Robot Logic Lab. Write your expectation for each step, execute one command at a time, and locate the first difference.",
+    "evidence": "Describe the bug as: input, expected result, actual result, smallest fix.",
+    "safety": "Back up files before trying unfamiliar changes.",
+    "keywords": [
+      "debug",
+      "code",
+      "errors",
+      "bug",
+      "test",
+      "expected",
+      "actual",
+      "programming"
+    ],
+    "difficulty": "Engineer",
+    "citation": {
+      "type": "original",
+      "label": "WonderForge learning notes · 2026-11-23"
+    },
+    "followUp": "Write one observation in Project Vault, then teach the idea to your brother."
+  }
+]
