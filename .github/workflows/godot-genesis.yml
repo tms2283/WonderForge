@@ -51,6 +51,23 @@ jobs:
             echo 'Runtime errors detected in Godot game log'
             exit 1
           fi
+      - name: Exercise modular vehicle, garage, trial and journal in actual Godot
+        run: |
+          set -o pipefail
+          timeout 90 /tmp/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path godot-genesis --script res://tests/runtime_smoke.gd 2>&1 | tee /tmp/godot-systems.log
+          grep -F 'WF ENGINE CONTRACT PASS' /tmp/godot-systems.log
+          if grep -E '(SCRIPT ERROR|Parse Error|RUNTIME ERROR|ERROR: Invalid|ERROR: Failed|WF ENGINE TEST FAIL)' /tmp/godot-systems.log; then
+            echo 'Actual engine system-contract failure found'
+            exit 1
+          fi
+      - name: Capture engine-system test log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-genesis-real-systems-contract-log
+          path: /tmp/godot-systems.log
+          if-no-files-found: ignore
       - name: Capture runtime log
         if: always()
         uses: actions/upload-artifact@v4
