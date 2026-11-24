@@ -11,6 +11,10 @@ const BUILDER_SCRIPT := preload("res://scripts/world_builder.gd")
 const VEHICLE_SCRIPT := preload("res://scripts/vehicle.gd")
 const HUD_SCRIPT := preload("res://scripts/hud.gd")
 const QUALITY_SCRIPT := preload("res://scripts/quality_profiles.gd")
+const GARAGE_SCRIPT := preload("res://scripts/rover_garage.gd")
+const TRIAL_SCRIPT := preload("res://scripts/trial_course.gd")
+const JOURNAL_SCRIPT := preload("res://scripts/engineering_journal.gd")
+const BLUEPRINT_SCRIPT := preload("res://scripts/rover_blueprint.gd")
 
 var player: GenesisPlayer
 var follow: GenesisCamera
@@ -26,6 +30,12 @@ var ambient_clock: float = 0.0
 var toast_timeout: float = 0.0
 var quality_name: String = "creator"
 var quality_settings: Dictionary = {}
+var garage: GenesisRoverGarage
+var proving_grounds: GenesisTrialCourse
+var engineering_journal: GenesisEngineeringJournal
+var last_trial: Dictionary = {}
+var last_hypothesis: String = ""
+var trial_notice_s: float = 0.0
 
 func _ready() -> void:
 	quality_name = QUALITY_SCRIPT.resolve_requested()
@@ -57,6 +67,20 @@ func _ready() -> void:
 	add_child(rover)
 	hud = HUD_SCRIPT.new()
 	add_child(hud)
+	engineering_journal = JOURNAL_SCRIPT.new()
+	engineering_journal.load_records()
+	last_trial = engineering_journal.latest()
+	proving_grounds = TRIAL_SCRIPT.new()
+	proving_grounds.terrain = landscape
+	add_child(proving_grounds)
+	proving_grounds.gate_cleared.connect(_on_gate_cleared)
+	proving_grounds.run_completed.connect(_on_trial_completed)
+	proving_grounds.run_failed.connect(_on_trial_failed)
+	garage = GARAGE_SCRIPT.new()
+	add_child(garage)
+	garage.build_applied.connect(_on_garage_applied)
+	garage.trial_requested.connect(_on_garage_trial)
+	garage.garage_closed.connect(_on_garage_closed)
 	_update_hud()
 	hud.notice("QUALITY PROFILE · %s (override with -- --quality=explorer|creator|ultra)" % str(quality_settings["label"]))
 
@@ -84,12 +108,15 @@ func _create_lighting() -> void:
 	add_child(world_env)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if garage != null and garage.active: return
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
 			KEY_F1: hud.toggle_help()
 			KEY_F5: _save_game()
 			KEY_F9: _load_game()
 			KEY_M: _show_quest_help()
+			KEY_J: _show_trial_journal()
+			KEY_G: _open_garage()
 			KEY_B:
 				if not rover.driving:
 					builder.set_active(not builder.active)
@@ -97,10 +124,26 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_E: _interact()
 			KEY_Q:
 				if builder.active: builder.rotate_ghost()
+			KEY_Z:
+				if builder.active:
+					var last_kind: int = builder.undo_last()
+					if last_kind >= 0:
+						var key := _cost_key(last_kind)
+						resources[key] = int(resources.get(key,0)) + 1
+						_update_hud()
+			KEY_X:
+				if builder.active:
+					var redo_kind: int = builder.next_redo_kind()
+					if redo_kind >= 0 and _can_afford(redo_kind) and builder.redo_last():
+						_consume_resource(redo_kind)
+						_update_hud()
+			KEY_R:
+				if proving_grounds.active and rover.driving:
+					rover.reset_trial(proving_grounds.start_trial(rover.blueprint,last_hypothesis),proving_grounds.start_direction())
+					hud.notice("TRIAL RESET · Same course, same design. Take another measurement.")
 			KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6:
 				if builder.active:
-					builder.selected = event.keycode - KEY_1
-					builder._update_ghost()
+					builder.select(event.keycode - KEY_1)
 					_update_hud()
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and builder.active and not hud.splash.visible:
 		if _can_afford(builder.selected) and builder.place():
@@ -108,6 +151,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			_update_hud()
 
 func _physics_process(_delta: float) -> void:
+	if proving_grounds != null and rover != null:
+		if proving_grounds.active and rover.driving:
+			proving_grounds.update_drive(rover.global_position,rover.get_telemetry(),_delta)
+		hud.set_rover_telemetry(rover.get_telemetry(),proving_grounds.guidance(rover.global_position),rover.driving)
 	if builder.active and not hud.splash.visible:
 		builder.update_aim(get_viewport())
 	if rover.driving:
@@ -143,6 +190,7 @@ func _on_part_placed(_part: String) -> void:
 
 func _interact() -> void:
 	if rover.driving:
+		if proving_grounds.active: proving_grounds.stop_trial()
 		rover.driving = false
 		player.global_position = rover.global_position + Vector3(3,2.1,0)
 		player.set_driving(false)
@@ -153,7 +201,7 @@ func _interact() -> void:
 		player.set_driving(true)
 		builder.set_active(false)
 		story_flags.rover = true
-		hud.notice("FORGEROVER ONLINE · WASD drive, SPACE brake, E disembark")
+		hud.notice("FORGEROVER ONLINE · WASD drive, SPACE brake, G tune, E disembark")
 		_advance_story()
 		return
 	var nearest: Dictionary = {}
@@ -191,8 +239,61 @@ func _advance_story() -> void:
 	if completed == 4:
 		hud.notice("ACT I COMPLETE · The Valley welcomes a new engineer!")
 
+func _open_garage() -> void:
+	if proving_grounds.active:
+		proving_grounds.stop_trial()
+		rover.driving = false
+	if rover.driving:
+		rover.driving = false
+		player.global_position = rover.global_position + Vector3(3,2.1,0)
+		player.set_driving(false)
+	builder.set_active(false)
+	player.interaction_enabled = false
+	garage.open_garage(rover.blueprint,last_trial)
+	hud.notice("INVENTOR'S GARAGE · Choose a design, write a prediction, run the proving grounds.")
+
+func _on_garage_applied(config: Dictionary) -> void:
+	rover.apply_build(config)
+	hud.notice("NEW ROVER CONFIGURED · Changes now affect wheel geometry and driving physics.")
+
+func _on_garage_trial(config: Dictionary, hypothesis: String) -> void:
+	rover.apply_build(config)
+	last_hypothesis = hypothesis
+	var start: Vector3 = proving_grounds.start_trial(rover.blueprint,hypothesis)
+	rover.reset_trial(start,proving_grounds.start_direction())
+	player.set_driving(true)
+	story_flags.rover = true
+	_advance_story()
+	hud.notice("TRIAL STARTED · Drive through SIX gates in order. R reset · E exit.")
+
+func _on_garage_closed() -> void:
+	if not rover.driving: player.interaction_enabled = true
+	_update_hud()
+
+func _on_gate_cleared(index: int, count: int) -> void:
+	hud.notice("CHECKPOINT %d / %d   •   Follow the next arch" % [index,count])
+
+func _on_trial_failed(reason: String) -> void:
+	hud.notice(reason)
+
+func _on_trial_completed(result: Dictionary) -> void:
+	if engineering_journal.add_result(result):
+		last_trial = result.duplicate(true)
+		var best: Dictionary = engineering_journal.best()
+		hud.notice("TRIAL COMPLETE · %.1f s, peak %.1f km/h! Best: %.1f s  ·  Press J for analysis." % [float(result["time_s"]),float(result["peak_speed_kmh"]),float(best.get("time_s",0))])
+	else:
+		hud.notice("TRIAL COMPLETE, but journal write failed. Check local storage.")
+	resources["alloy"] = mini(100000,int(resources.get("alloy",0))+2)
+	_update_hud()
+
+func _show_trial_journal() -> void:
+	if engineering_journal.records.is_empty():
+		hud.notice("ENGINEERING JOURNAL · No trial yet. Press G, predict an outcome, and run the circuit.")
+	else:
+		hud.notice("JOURNAL · "+engineering_journal.compare_last_two().replace("\n","   |   "))
+
 func _show_quest_help() -> void:
-	hud.notice("ACT I · Find beacon, claim supplies, build 3 parts, drive rover. Exploration regions are optional.")
+	hud.notice("ACT I · Find beacon, claim supplies, construct three parts, drive rover. G = engineering garage / J = experiment journal.")
 
 func _update_hud() -> void:
 	if hud == null: return
@@ -204,7 +305,7 @@ func _update_hud() -> void:
 	var objective := "Explore the valley. Activate a glowing quest beacon."
 	if story_flags.beacon and not story_flags.constructed: objective = "Open BUILD MODE (B), select a part and place three pieces."
 	if story_flags.constructed and not story_flags.rover: objective = "Find the copper ForgeRover near the workshop; press E to drive."
-	if active_mission >= 4: objective = "Explore five guilds and prototype a larger invention."
+	if active_mission >= 4: objective = "Press G to design and test a rover; compare 2 trials with J, then explore the guilds."
 	hud.hint_label.text = objective
 	var flags := ["workshop","beacon","constructed","rover"]
 	var lines := ["FIND THE FOUNDERS' WORKSHOP","ACTIVATE A QUEST BEACON","ASSEMBLE THREE PARTS","DRIVE THE FORGEROVER"]
@@ -221,7 +322,9 @@ func _save_game() -> void:
 		"visited":visited,
 		"resources":resources,
 		"story":story_flags,
-		"assembly":builder.export_data()
+		"assembly":builder.export_data(),
+		"rover_blueprint":rover.blueprint.duplicate(true),
+		"journal_version":"wonderforge.genesis.journal.v1"
 	}
 	var file := FileAccess.open(SAVE_PATH,FileAccess.WRITE)
 	if file == null:
@@ -257,6 +360,11 @@ func _load_game() -> void:
 	if not builder.import_data(parsed.get("assembly",{})):
 		hud.notice("Save rejected: invalid assembly data.")
 		return
+	var previous_blueprint: Variant = parsed.get("rover_blueprint",BLUEPRINT_SCRIPT.DEFAULT)
+	if not BLUEPRINT_SCRIPT.strict_valid(previous_blueprint):
+		hud.notice("Save rejected: invalid rover blueprint.")
+		return
+	rover.apply_build(previous_blueprint)
 	player.global_position = Vector3(float(pos[0]),float(pos[1]),float(pos[2]))
 	for key in resources.keys():
 		resources[key] = clampi(int(inventory.get(key,resources[key])),0,100000)

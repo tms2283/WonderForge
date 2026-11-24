@@ -12,6 +12,10 @@ var splash: PanelContainer
 var footer: Label
 var toast_label: Label
 var banner_label: Label
+var rover_panel: PanelContainer
+var rover_speed: Label
+var rover_course: Label
+var rover_energy: ProgressBar
 var collapsed: bool = false
 
 const PAPER := Color("eff7f1")
@@ -75,6 +79,31 @@ func _ready() -> void:
 	resources.add_child(status_label)
 	coords_label = _label("COORDINATES  0 · 0", 12, GOLD)
 	resources.add_child(coords_label)
+	rover_panel = PanelContainer.new()
+	rover_panel.name = "DriveData"
+	rover_panel.anchor_left = 1.0
+	rover_panel.anchor_right = 1.0
+	rover_panel.position = Vector2(-345,149)
+	rover_panel.custom_minimum_size = Vector2(323,145)
+	rover_panel.add_theme_stylebox_override("panel",_style(Color(0.035,0.09,0.13,0.9),Color("669f9b")))
+	root.add_child(rover_panel)
+	var rover_v := VBoxContainer.new()
+	rover_v.add_theme_constant_override("separation",5)
+	rover_panel.add_child(rover_v)
+	rover_v.add_child(_label("FORGEROVER  /  LIVE INSTRUMENTS",12,MINT,true))
+	rover_speed = _label("0.0 km/h  •  4 wheels on ground",17,PAPER,true)
+	rover_v.add_child(rover_speed)
+	rover_course = _label("Press G to enter the garage and test.",12,GOLD)
+	rover_v.add_child(rover_course)
+	rover_energy = ProgressBar.new()
+	rover_energy.name = "BatteryCharge"
+	rover_energy.min_value = 0
+	rover_energy.max_value = 100
+	rover_energy.value = 100
+	rover_energy.show_percentage = true
+	rover_energy.custom_minimum_size.y = 17
+	rover_v.add_child(rover_energy)
+	rover_panel.visible = false
 	var bottom := PanelContainer.new()
 	bottom.anchor_top = 1.0
 	bottom.anchor_bottom = 1.0
@@ -125,7 +154,11 @@ func _make_help(root: Control) -> void:
 	col.add_child(_label("✦    WONDERFORGE : GENESIS",37,MINT,true))
 	col.add_child(_label("EXPLORE  ·  INVENT  ·  BUILD  ·  RACE  ·  LEARN",18,GOLD,true))
 	col.add_child(_label("A new world of living engineering awaits. Wander through the Founders' Valley, visit its five invention guilds, collect materials, construct machines, and test your first rover.",17,PAPER))
-	col.add_child(_label("MOVEMENT: WASD / arrow keys, SHIFT sprint, SPACE jump\nCAMERA: hold right mouse button, move mouse; scroll to zoom\nBUILDING: B toggle, 1–6 select parts, Q rotate, left click place\nINTERACTION: E near a crystal beacon or rover\nMISSIONS: M toggle quest details; F1 show/hide this guide\nSAVING: F5 save; F9 load your inventions",15,Color("bcd6d5")))
+	col.add_child(_label("WASD move · SHIFT sprint · SPACE jump · right mouse to orbit
+B build · 1–6 select · Q rotate · click place · Z undo · X redo
+G vehicle garage · choose motor/tires/gearing and run a physics trial
+WASD steer/drive · SPACE brake · R reset trial · E disembark
+J see experiment comparison · M mission hints · F5 save · F9 load",15,Color("bcd6d5")))
 	col.add_child(_label("PRESS F1 TO BEGIN EXPLORING",20,MINT,true))
 
 func toggle_help() -> void:
@@ -137,10 +170,18 @@ func set_resources(amounts: Dictionary) -> void:
 func set_mode(building: bool, kind: String, count: int) -> void:
 	if building:
 		build_label.text = "BUILD MODE    /    %s    /    %d STRUCTURAL PIECES" % [kind.to_upper(),count]
-		footer.text = "1–6 material · Q rotate · click construct · B exit · F5 save"
+		footer.text = "1–6 part · Q rotate · click place · Z undo · X redo · B exit"
 	else:
 		build_label.text = "EXPLORATION MODE    /    DISCOVER THE VALLEY"
-		footer.text = "WASD move · SHIFT sprint · RMB orbit · B build · E interact · F1 help"
+		footer.text = "WASD move · G garage · J experiments · B build · E interact · F1 help"
+
+func set_rover_telemetry(data: Dictionary, guidance: String, driving: bool) -> void:
+	if rover_panel == null: return
+	rover_panel.visible = driving
+	if not driving: return
+	rover_speed.text = "%.1f km/h     •     %d / 4 wheels" % [float(data.get("speed_kmh",0.0)),int(data.get("wheel_contact",0))]
+	rover_course.text = guidance
+	rover_energy.value = clampf(float(data.get("charge_percent",0.0)),0,100)
 
 func notice(value: String) -> void:
 	toast_label.text = value
