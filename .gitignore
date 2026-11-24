@@ -1,4 +1,4 @@
-# Build outputs and personal data
+# Built packages and generated archives belong to CI artifacts, not version control.
 /dist/
 *.deb
 *.img
