@@ -15,6 +15,7 @@ const GARAGE_SCRIPT := preload("res://scripts/rover_garage.gd")
 const TRIAL_SCRIPT := preload("res://scripts/trial_course.gd")
 const JOURNAL_SCRIPT := preload("res://scripts/engineering_journal.gd")
 const BLUEPRINT_SCRIPT := preload("res://scripts/rover_blueprint.gd")
+const SAVE_GUARD := preload("res://scripts/save_guard.gd")
 const INPUT_SCRIPT := preload("res://scripts/input_actions.gd")
 const MENTOR_SCRIPT := preload("res://scripts/orbit_mentor.gd")
 
@@ -386,23 +387,17 @@ func _save_game() -> void:
 		"rover_blueprint":rover.blueprint.duplicate(true),
 		"journal_version":"wonderforge.genesis.journal.v1"
 	}
-	var file := FileAccess.open(SAVE_PATH,FileAccess.WRITE)
-	if file == null:
-		hud.notice("Could not save. Check local disk permissions.")
+	if not SAVE_GUARD.write_atomic(save, SAVE_PATH):
+		hud.notice("Save failed validation or disk write. Previous world preserved.")
 		return
-	file.store_string(JSON.stringify(save,"  "))
-	file.close()
-	hud.notice("WORLD SAVED · Private local Godot save: genesis_save_v1.json")
+	hud.notice("WORLD SAVED · Validated private save + last-known-good backup")
 
 func _load_game() -> void:
-	if not FileAccess.file_exists(SAVE_PATH):
-		hud.notice("No previous save yet. Press F5 to create one.")
+	var checked: Dictionary = SAVE_GUARD.read_best(SAVE_PATH)
+	if not bool(checked.get("ok", false)):
+		hud.notice("No valid save or backup found. World has not been changed.")
 		return
-	var raw := FileAccess.get_file_as_string(SAVE_PATH)
-	var parsed: Variant = JSON.parse_string(raw)
-	if not (parsed is Dictionary) or parsed.get("schema","") != "wonderforge.genesis.save.v1":
-		hud.notice("Save rejected: invalid format.")
-		return
+	var parsed: Dictionary = checked["data"]
 	var pos: Variant = parsed.get("player",[])
 	if not (pos is Array) or pos.size() != 3:
 		hud.notice("Save rejected: invalid player position.")
@@ -417,12 +412,12 @@ func _load_game() -> void:
 	if not (inventory is Dictionary and narrative is Dictionary and discoveries is Dictionary):
 		hud.notice("Save rejected: invalid progression.")
 		return
-	if not builder.import_data(parsed.get("assembly",{})):
-		hud.notice("Save rejected: invalid assembly data.")
-		return
 	var previous_blueprint: Variant = parsed.get("rover_blueprint",BLUEPRINT_SCRIPT.DEFAULT)
 	if not BLUEPRINT_SCRIPT.strict_valid(previous_blueprint):
 		hud.notice("Save rejected: invalid rover blueprint.")
+		return
+	if not builder.import_data(parsed.get("assembly",{})):
+		hud.notice("Save rejected: invalid assembly data.")
 		return
 	rover.apply_build(previous_blueprint)
 	player.global_position = Vector3(float(pos[0]),float(pos[1]),float(pos[2]))
@@ -432,4 +427,7 @@ func _load_game() -> void:
 		story_flags[key] = bool(narrative.get(key,false))
 	visited = discoveries.duplicate(true)
 	_advance_story()
-	hud.notice("PREVIOUS WORLD LOADED · Welcome back, inventor!")
+	if checked.get("source") == "backup":
+		hud.notice("BACKUP RECOVERED · Previous valid world loaded. Review it before saving.")
+	else:
+		hud.notice("PREVIOUS WORLD LOADED · Welcome back, inventor!")

@@ -61,6 +61,16 @@ jobs:
             echo 'Actual engine system-contract failure found'
             exit 1
           fi
+      - name: Verify staged save, backup and corruption recovery inside Godot
+        run: |
+          set -o pipefail
+          timeout 60 /tmp/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path godot-genesis --script res://tests/save_guard_smoke.gd 2>&1 | tee /tmp/godot-save-guard.log
+          grep -F 'WF SAVE GUARD CONTRACT PASS' /tmp/godot-save-guard.log
+          if grep -E '(SCRIPT ERROR|Parse Error|RUNTIME ERROR|ERROR: Invalid|ERROR: Failed|WF SAVE GUARD FAIL)' /tmp/godot-save-guard.log; then
+            echo 'Save integrity engine contract failure found'
+            exit 1
+          fi
       - name: Capture engine-system test log
         if: always()
         uses: actions/upload-artifact@v4
