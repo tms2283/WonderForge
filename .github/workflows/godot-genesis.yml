@@ -42,6 +42,22 @@ jobs:
             echo 'Found engine script/import errors in the log'
             exit 1
           fi
+      - name: Run 30 simulation frames in headless Explorer mode
+        run: |
+          set -o pipefail
+          timeout 60 /tmp/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path godot-genesis --quit-after 30 -- --quality=explorer 2>&1 | tee /tmp/godot-runtime.log
+          if grep -E '(SCRIPT ERROR|Parse Error|RUNTIME ERROR|ERROR: Invalid|ERROR: Failed|Error at \()' /tmp/godot-runtime.log; then
+            echo 'Runtime errors detected in Godot game log'
+            exit 1
+          fi
+      - name: Capture runtime log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-genesis-headless-runtime-log
+          path: /tmp/godot-runtime.log
+          if-no-files-found: ignore
       - name: Capture headless import log
         if: always()
         uses: actions/upload-artifact@v4
