@@ -130,6 +130,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_F9: _load_game()
 			KEY_M: _show_quest_help()
 			KEY_J: _show_trial_journal()
+			KEY_I:
+				if builder.active: _show_assembly_scan()
 			KEY_G: _open_garage()
 			KEY_B:
 				if not rover.driving:
@@ -228,11 +230,14 @@ func _consume_resource(part: int) -> void:
 	resources[key] = maxi(0, int(resources.get(key,0)) - 1)
 
 func _on_part_placed(_part: String) -> void:
-	if builder.placed.size() >= 3 and not story_flags.constructed:
+	var report: Dictionary = builder.structure_report()
+	if not story_flags.constructed and bool(report.get("design_ready", false)):
 		story_flags.constructed = true
-		hud.notice("QUEST MILESTONE · First three structural pieces assembled! +8 Timber")
+		hud.notice("STRUCTURE MILESTONE · Three connected pieces span %.1f m. +8 Timber!" % float(report["horizontal_span_m"]))
 		resources.timber += 8
 		_advance_story()
+	elif not story_flags.constructed:
+		hud.notice("BUILD CHALLENGE · Connect 3 pieces across 7 m. Press I to inspect.")
 
 func _interact() -> void:
 	if rover.driving:
@@ -353,8 +358,12 @@ func _show_trial_journal() -> void:
 	else:
 		hud.notice("JOURNAL · "+engineering_journal.compare_last_two().replace("\n","   |   "))
 
+func _show_assembly_scan() -> void:
+	var report: Dictionary = builder.structure_report()
+	hud.notice("ASSEMBLY SCAN · %d parts / %d groups / max %d connected / span %.1f m. Contact only, not load-tested." % [int(report["total_parts"]), int(report["components"]), int(report["largest_connected"]), float(report["horizontal_span_m"])])
+
 func _show_quest_help() -> void:
-	hud.notice("ACT I · Find beacon, claim supplies, construct three parts, drive rover. G = engineering garage / J = experiment journal.")
+	hud.notice("ACT I · Visit beacons, connect 3 structural parts across 7 m, drive rover. B build / I scan / G garage / J journal.")
 
 func _update_hud() -> void:
 	if hud == null: return
@@ -364,12 +373,12 @@ func _update_hud() -> void:
 	if active_mission >= 4: chapter = "ACT II  ·  THE FRONTIER AWAITS (PREVIS)"
 	hud.mission_label.text = chapter
 	var objective := "Explore the valley. Activate a glowing quest beacon."
-	if story_flags.beacon and not story_flags.constructed: objective = "Open BUILD MODE (B), select a part and place three pieces."
+	if story_flags.beacon and not story_flags.constructed: objective = "Press B, connect 3 pieces into a 7 m structure; press I to scan."
 	if story_flags.constructed and not story_flags.rover: objective = "Find the copper ForgeRover near the workshop; press E to drive."
 	if active_mission >= 4: objective = "Press G to design and test a rover; compare 2 trials with J, then explore the guilds."
 	hud.hint_label.text = objective
 	var flags := ["workshop","beacon","constructed","rover"]
-	var lines := ["FIND THE FOUNDERS' WORKSHOP","ACTIVATE A QUEST BEACON","ASSEMBLE THREE PARTS","DRIVE THE FORGEROVER"]
+	var lines := ["FIND THE FOUNDERS' WORKSHOP","ACTIVATE A QUEST BEACON","CONNECT THREE STRUCTURAL PIECES","DRIVE THE FORGEROVER"]
 	var report := ""
 	for i in range(flags.size()):
 		report += "%s  %02d   %s" % ["✓" if story_flags.get(flags[i],false) else "○", i+1, lines[i]]

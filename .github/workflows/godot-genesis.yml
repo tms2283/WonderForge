@@ -71,6 +71,16 @@ jobs:
             echo 'Save integrity engine contract failure found'
             exit 1
           fi
+      - name: Exercise assembly connectivity inside actual Godot engine
+        run: |
+          set -o pipefail
+          timeout 60 /tmp/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path godot-genesis --script res://tests/assembly_scan_smoke.gd 2>&1 | tee /tmp/godot-assembly-scan.log
+          grep -F 'WF ASSEMBLY SCAN PASS' /tmp/godot-assembly-scan.log
+          if grep -E '(SCRIPT ERROR|Parse Error|RUNTIME ERROR|ERROR: Invalid|ERROR: Failed|WF ASSEMBLY SCAN FAIL)' /tmp/godot-assembly-scan.log; then
+            echo 'Assembly scan contract failed'
+            exit 1
+          fi
       - name: Capture engine-system test log
         if: always()
         uses: actions/upload-artifact@v4

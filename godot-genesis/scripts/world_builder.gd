@@ -7,6 +7,7 @@ const PARTS: Array[String] = ["Timber", "Stone", "Steel", "Glass", "Copper", "En
 const COLORS: Array[Color] = [Color("ae8158"), Color("9aa5a1"), Color("668aa5"), Color("bce8de"), Color("d79a59"), Color("59f1d4")]
 const MAX_PARTS := 300
 const SNAP_M := 0.5
+const SCAN := preload("res://scripts/assembly_scan.gd")
 var active: bool = false
 var selected: int = 0
 var yaw_steps: int = 0
@@ -200,3 +201,9 @@ func import_data(data: Dictionary) -> bool:
 		placed.append(part)
 		_spawn_part(part)
 	return true
+
+func structure_report() -> Dictionary:
+	var sizes: Array = []
+	for index in range(PARTS.size()):
+		sizes.append(_part_size(index))
+	return SCAN.summarize(placed, sizes)

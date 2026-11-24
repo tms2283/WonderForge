@@ -34,3 +34,7 @@ Before modifying game systems, run `godot --headless --path godot-genesis --scri
 ## Save-integrity regression gate (2026-11-24)
 
 The game now has `scripts/save_guard.gd` and `tests/save_guard_smoke.gd`. Run the save-contract test in actual Godot after import; preserve the current v1 save schema and recovery semantics. Read `docs/SAVE-RECOVERY-v0.4.md` before altering disk I/O. Desktop test success does not certify power-loss resilience of a Pi SD card.
+
+## Assembly contact scanner gate (2026-11-24)
+
+The builder now exposes `structure_report()` from `GenesisAssemblyScan`. Press **I** in Build mode. This is a geometric contact estimator for an introductory connected-build quest, **not** an actual fixed/hinge joint solver or strength certification. Read `docs/ASSEMBLY-SCAN-v0.4.md` and execute `tests/assembly_scan_smoke.gd` in Godot 4.7.2 before any physics or catalogue integration.
